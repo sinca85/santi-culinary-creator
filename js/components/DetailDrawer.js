@@ -174,6 +174,46 @@ window.DetailDrawer = function DetailDrawer({
             </ul>
           </div>
 
+          {project.recipe &&
+            (
+                (project.recipe.ingredients || []).length ||
+                (project.recipe.steps || []).length ||
+                project.recipe.result
+            ) && (
+                <div className="detail-block">
+                <h3>Receta</h3>
+
+                {(project.recipe.ingredients || []).length > 0 && (
+                    <>
+                    <h4>Ingredientes</h4>
+                    <ul>
+                        {project.recipe.ingredients.map((ingredient,index)=>(
+                        <li key={index}>{ingredient}</li>
+                        ))}
+                    </ul>
+                    </>
+                )}
+
+                {(project.recipe.steps || []).length > 0 && (
+                    <>
+                    <h4>Pasos</h4>
+                    <ol>
+                        {project.recipe.steps.map((step,index)=>(
+                        <li key={index}>{step}</li>
+                        ))}
+                    </ol>
+                    </>
+                )}
+
+                {project.recipe.result && (
+                    <p>
+                    <strong>Resultado:</strong> {project.recipe.result}
+                    </p>
+                )}
+                </div>
+            )
+            }
+
           <div className="detail-block">
             <h3>Notas</h3>
 
