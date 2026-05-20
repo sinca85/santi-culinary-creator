@@ -1,4 +1,3 @@
-
 :root {
   --bg: #0f0e0c;
   --panel: rgba(255, 255, 255, 0.075);
@@ -106,9 +105,11 @@ body {
   font-size: 22px;
 }
 
+/* Cards */
+
 .project-card {
   height: 100%;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .project-card .ant-card-head {
@@ -131,6 +132,78 @@ body {
   margin: 12px 0;
 }
 
+/* Cover image */
+
+.project-card.has-cover {
+  min-height: 260px !important;
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,.62),
+      rgba(0,0,0,.86)
+    ),
+    var(--cover-image) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+}
+
+.project-card.has-cover .ant-card-head,
+.project-card.has-cover .ant-card-body {
+  background: transparent !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.project-card.has-cover .ant-card-head {
+  border-bottom: 1px solid rgba(255,255,255,.20) !important;
+}
+
+.project-card.has-cover .ant-card-head-title,
+.project-card.has-cover .project-goal,
+.project-card.has-cover .task-list span {
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.85) !important;
+}
+
+.project-card.has-cover .ant-btn {
+  background: rgba(0,0,0,.45) !important;
+  border-color: rgba(255,255,255,.35) !important;
+  color: #fff !important;
+}
+
+/* Tags siempre plenos */
+
+.project-card .ant-tag {
+  color: #fff !important;
+  border: 0 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  box-shadow: 0 3px 10px rgba(0,0,0,.22) !important;
+}
+
+.project-card .tag-status {
+  background: #6d4cff !important;
+}
+
+.project-card .tag-category {
+  background: #8b5a2b !important;
+}
+
+.project-card .tag-priority {
+  background: #c47a19 !important;
+}
+
+.project-card .tag-content {
+  background: #b83280 !important;
+}
+
+.project-card .tag-purchases {
+  background: #d9480f !important;
+}
+
+/* Task list */
+
 .task-list {
   margin: 12px 0 0;
   padding: 0;
@@ -149,6 +222,8 @@ body {
   color: var(--muted);
   text-decoration: line-through;
 }
+
+/* Drawer */
 
 .detail-drawer .ant-drawer-content {
   background: #17120e;
@@ -173,7 +248,11 @@ body {
   margin: 0 0 8px;
   color: #000;
 }
-.detail-block .task-list li {color:#000}
+
+.detail-block .task-list li {
+  color: #000;
+}
+
 .code-block {
   white-space: pre-wrap;
   background: #0a0908;
@@ -184,6 +263,8 @@ body {
   font-size: 13px;
   overflow: auto;
 }
+
+/* Ant Design base */
 
 .ant-card,
 .ant-modal-content,
@@ -252,16 +333,7 @@ body {
   color: var(--text) !important;
 }
 
-@media (max-width: 720px) {
-  .app-header {
-    flex-direction: column;
-  }
-
-  .header-actions {
-    justify-content: flex-start;
-  }
-}
-/* Input buscador */
+/* Inputs claros */
 
 .ant-input,
 .ant-input-affix-wrapper,
@@ -283,6 +355,7 @@ body {
   background: #111 !important;
   border-color: #111 !important;
 }
+
 /* Modal crear proyecto */
 
 .ant-modal-content {
@@ -313,96 +386,13 @@ body {
   background: rgba(0,0,0,.72) !important;
   backdrop-filter: blur(3px);
 }
-.project-card.has-cover {
 
-  min-height: 260px;
+@media (max-width: 720px) {
+  .app-header {
+    flex-direction: column;
+  }
 
-  overflow: hidden;
-
-  border: 1px solid
-    rgba(255,255,255,.08);
-
-}
-
-.project-card.has-cover .ant-card-body,
-.project-card.has-cover .ant-card-head {
-
-  background: transparent;
-
-}
-
-.project-card.has-cover * {
-
-  color: white !important;
-
-}
-
-.project-card.has-cover .ant-tag {
-
-  backdrop-filter: blur(6px);
-
-}
-/* Cards con cover image */
-
-.project-card.has-cover {
-  min-height: 260px !important;
-  overflow: hidden !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  border: 1px solid rgba(255,255,255,.18) !important;
-}
-
-.project-card.has-cover .ant-card-head,
-.project-card.has-cover .ant-card-body {
-  background: transparent !important;
-  position: relative !important;
-  z-index: 2 !important;
-}
-
-.project-card.has-cover .ant-card-head {
-  border-bottom: 1px solid rgba(255,255,255,.20) !important;
-}
-
-.project-card.has-cover .ant-card-head-title,
-.project-card.has-cover .project-goal,
-.project-card.has-cover .task-list span {
-  color: #fff !important;
-  text-shadow: 0 2px 8px rgba(0,0,0,.85) !important;
-}
-
-.project-card.has-cover .ant-btn {
-  background: rgba(0,0,0,.45) !important;
-  border-color: rgba(255,255,255,.35) !important;
-  color: #fff !important;
-}
-
-/* Tags plenos sobre cards con imagen */
-
-.project-card.has-cover .ant-tag {
-  color: #fff !important;
-  border: 0 !important;
-  font-weight: 700 !important;
-  text-shadow: none !important;
-  box-shadow: 0 3px 10px rgba(0,0,0,.28) !important;
-}
-
-.project-card.has-cover .tag-status {
-  background: #6d4cff !important;
-}
-
-.project-card.has-cover .tag-category {
-  background: #8b5a2b !important;
-}
-
-.project-card.has-cover .tag-priority {
-  background: #c47a19 !important;
-}
-
-.project-card.has-cover .tag-content {
-  background: #b83280 !important;
-}
-
-.project-card.has-cover .tag-purchases {
-  background: #d9480f !important;
+  .header-actions {
+    justify-content: flex-start;
+  }
 }

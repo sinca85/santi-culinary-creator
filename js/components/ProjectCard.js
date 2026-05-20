@@ -30,18 +30,10 @@ window.ProjectCard = function ProjectCard({
         }`}
 
         style={
-            project.coverImage
+        project.coverImage
             ? {
-                backgroundImage:
-                    `linear-gradient(
-                    rgba(0,0,0,.65),
-                    rgba(0,0,0,.85)
-                    ),
-                    url(${project.coverImage})`,
-
-                backgroundSize: "cover",
-                backgroundPosition: "center"
-                }
+                "--cover-image": `url(${project.coverImage})`
+            }
             : {}
         }
 
