@@ -14,7 +14,7 @@ async function connectToMongo() {
 
 function setCors(res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET,PATCH,OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
 
@@ -34,6 +34,32 @@ export default async function handler(req, res) {
       const projects = await collection.find({}).toArray();
       return res.status(200).json(projects);
     }
+
+    if (req.method === "POST") {
+        const project = req.body || {};
+
+        if (!project.id || !project.title) {
+            return res.status(400).json({
+            error: "Faltan campos: id y title"
+            });
+        }
+
+        const now = new Date().toISOString();
+
+        const newProject = {
+            ...project,
+            createdAt: now,
+            updatedAt: now
+        };
+
+        const result = await collection.insertOne(newProject);
+
+        return res.status(201).json({
+            ok: true,
+            insertedId: result.insertedId,
+            project: newProject
+        });
+        }
 
     if (req.method === "PATCH") {
         const { id, tasks } = req.body || {};

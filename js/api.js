@@ -39,3 +39,26 @@ window.updateProjectTasks = async function(id,tasks){
 
   return response.json();
 };
+
+window.createProject = async function(project){
+  const response =
+    await fetch(`${API_BASE_URL}/api/projects`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(project)
+    });
+
+  if(!response.ok){
+    const errorData =
+      await response.json().catch(() => ({}));
+
+    throw new Error(
+      errorData.error ||
+      "No se pudo guardar el proyecto"
+    );
+  }
+
+  return response.json();
+};

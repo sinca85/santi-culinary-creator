@@ -533,9 +533,17 @@ window.Dashboard = function Dashboard() {
         />
 
         <NewProjectModal
-          open={generatorOpen}
-          onCancel={() => setGeneratorOpen(false)}
-        />
+            open={generatorOpen}
+            onCancel={() => setGeneratorOpen(false)}
+            onProjectCreated={project => {
+                setProjects(prev => [
+                normalizeProject(project),
+                ...prev
+                ]);
+
+                setGeneratorOpen(false);
+            }}
+            />
       </div>
     </App>
   );

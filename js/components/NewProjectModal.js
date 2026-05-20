@@ -1,6 +1,7 @@
 window.NewProjectModal = function NewProjectModal({
   open,
-  onCancel
+  onCancel,
+  onProjectCreated
 }) {
   const {
     Button,
@@ -12,200 +13,231 @@ window.NewProjectModal = function NewProjectModal({
     Row,
     Select,
     Space,
+    Tabs,
     message
   } = antd;
 
-  const {
-    CopyOutlined
-  } = icons;
-
-  const {
-    useState
-  } = React;
+  const { useState } = React;
 
   const [form] = Form.useForm();
-  const [generated,setGenerated] =
-    useState("");
+  const [jsonText,setJsonText] = useState("");
+  const [saving,setSaving] = useState(false);
 
-  const onGenerate = async () => {
+  async function saveProject(project){
+    setSaving(true);
+
+    try {
+      const saved =
+        await createProject(project);
+
+      message.success("Proyecto guardado");
+
+      if(onProjectCreated){
+        onProjectCreated(saved.project);
+      }
+
+      form.resetFields();
+      setJsonText("");
+
+    } catch(err){
+      console.error(err);
+      message.error(
+        err.message ||
+        "No se pudo guardar el proyecto"
+      );
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function saveManual(){
     const values =
       await form.validateFields();
 
     const project =
       buildProjectFromForm(values);
 
-    setGenerated(
-      JSON.stringify(project,null,2)
-    );
-  };
+    await saveProject(project);
+  }
+
+  async function saveFromJson(){
+    try {
+      const project =
+        JSON.parse(jsonText);
+
+      if(!project.id && project.title){
+        project.id = slugify(project.title);
+      }
+
+      await saveProject(project);
+
+    } catch(err){
+      message.error("JSON inválido");
+    }
+  }
 
   return (
     <Modal
-      title="Generador de proyecto"
+      title="Guardar proyecto"
       open={open}
       onCancel={onCancel}
       footer={null}
       width={760}
     >
-      <p style={{ color:"var(--muted)" }}>
-        Esto todavía no guarda en Mongo. Te genera el JSON para revisar/copiar.
-      </p>
+      <Tabs
+        defaultActiveKey="manual"
+        items={[
+          {
+            key: "manual",
+            label: "Manual",
+            children: (
+              <>
+                <Form
+                  form={form}
+                  layout="vertical"
+                  initialValues={{
+                    status: "idea",
+                    category: "general",
+                    priority: "media",
+                    contentPending: true
+                  }}
+                >
+                  <Row gutter={12}>
+                    <Col xs={24} md={12}>
+                      <Form.Item
+                        name="title"
+                        label="Proyecto"
+                        rules={[{ required:true }]}
+                      >
+                        <Input placeholder="Cheesecake frutos rojos" />
+                      </Form.Item>
+                    </Col>
 
-      <Form
-        form={form}
-        layout="vertical"
-        initialValues={{
-          status: "idea",
-          category: "general",
-          priority: "media",
-          contentPending: true
-        }}
-      >
-        <Row gutter={12}>
-          <Col xs={24} md={12}>
-            <Form.Item
-              name="title"
-              label="Proyecto"
-              rules={[{ required:true }]}
-            >
-              <Input placeholder="Cheesecake frutos rojos" />
-            </Form.Item>
-          </Col>
+                    <Col xs={24} md={12}>
+                      <Form.Item
+                        name="goal"
+                        label="Objetivo"
+                      >
+                        <Input placeholder="Receta repetible + fotos + reel" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
 
-          <Col xs={24} md={12}>
-            <Form.Item
-              name="goal"
-              label="Objetivo"
-            >
-              <Input placeholder="Receta repetible + fotos + reel" />
-            </Form.Item>
-          </Col>
-        </Row>
+                  <Row gutter={12}>
+                    <Col xs={24} md={8}>
+                      <Form.Item name="status" label="Estado">
+                        <Select
+                          options={Object.entries(STATUS_LABELS).map(([value,label]) => ({
+                            value,
+                            label
+                          }))}
+                        />
+                      </Form.Item>
+                    </Col>
 
-        <Row gutter={12}>
-          <Col xs={24} md={8}>
-            <Form.Item
-              name="status"
-              label="Estado"
-            >
-              <Select
-                options={
-                  Object
-                    .entries(STATUS_LABELS)
-                    .map(([value,label])=>({
-                      value,
-                      label
-                    }))
-                }
-              />
-            </Form.Item>
-          </Col>
+                    <Col xs={24} md={8}>
+                      <Form.Item name="category" label="Categoría">
+                        <Select
+                          options={Object.entries(CATEGORY_LABELS).map(([value,label]) => ({
+                            value,
+                            label
+                          }))}
+                        />
+                      </Form.Item>
+                    </Col>
 
-          <Col xs={24} md={8}>
-            <Form.Item
-              name="category"
-              label="Categoría"
-            >
-              <Select
-                options={
-                  Object
-                    .entries(CATEGORY_LABELS)
-                    .map(([value,label])=>({
-                      value,
-                      label
-                    }))
-                }
-              />
-            </Form.Item>
-          </Col>
+                    <Col xs={24} md={8}>
+                      <Form.Item name="priority" label="Prioridad">
+                        <Select
+                          options={Object.entries(PRIORITY_LABELS).map(([value,label]) => ({
+                            value,
+                            label
+                          }))}
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
 
-          <Col xs={24} md={8}>
-            <Form.Item
-              name="priority"
-              label="Prioridad"
-            >
-              <Select
-                options={
-                  Object
-                    .entries(PRIORITY_LABELS)
-                    .map(([value,label])=>({
-                      value,
-                      label
-                    }))
-                }
-              />
-            </Form.Item>
-          </Col>
-        </Row>
+                  <Form.Item
+                    name="contentPending"
+                    valuePropName="checked"
+                  >
+                    <Checkbox>
+                      Contenido redes pendiente
+                    </Checkbox>
+                  </Form.Item>
 
-        <Form.Item
-          name="contentPending"
-          valuePropName="checked"
-        >
-          <Checkbox>
-            Contenido redes pendiente
-          </Checkbox>
-        </Form.Item>
+                  <Form.Item name="tasks" label="Checklist">
+                    <Input.TextArea
+                      rows={6}
+                      placeholder={
+                        "- [ ] Comprar queso crema\n- [ ] Comprar crema de leche\n- [ ] Sacar fotos\n- [ ] Grabar reel"
+                      }
+                    />
+                  </Form.Item>
 
-        <Form.Item
-          name="tasks"
-          label="Checklist"
-        >
-          <Input.TextArea
-            rows={6}
-            placeholder={
-              "- [ ] Comprar queso crema\n- [ ] Comprar crema de leche\n- [ ] Sacar fotos\n- [ ] Grabar reel"
-            }
-          />
-        </Form.Item>
+                  <Form.Item name="notes" label="Notas">
+                    <Input.TextArea
+                      rows={3}
+                      placeholder={
+                        "Probar versión económica\nEvaluar textura"
+                      }
+                    />
+                  </Form.Item>
 
-        <Form.Item
-          name="notes"
-          label="Notas"
-        >
-          <Input.TextArea
-            rows={3}
-            placeholder={
-              "Probar versión económica\nEvaluar textura"
-            }
-          />
-        </Form.Item>
+                  <Space>
+                    <Button
+                      type="primary"
+                      loading={saving}
+                      onClick={saveManual}
+                    >
+                      Guardar proyecto
+                    </Button>
 
-        <Space>
-          <Button
-            type="primary"
-            onClick={onGenerate}
-          >
-            Generar JSON
-          </Button>
+                    <Button onClick={() => form.resetFields()}>
+                      Limpiar
+                    </Button>
+                  </Space>
+                </Form>
+              </>
+            )
+          },
+          {
+            key: "json",
+            label: "Pegar JSON",
+            children: (
+              <>
+                <p style={{ color:"var(--muted)" }}>
+                  Pegá un proyecto completo en formato JSON. Si no tiene <strong>id</strong>, se genera desde el título.
+                </p>
 
-          <Button
-            onClick={() => form.resetFields()}
-          >
-            Limpiar
-          </Button>
-        </Space>
-      </Form>
+                <Input.TextArea
+                  rows={14}
+                  value={jsonText}
+                  onChange={event =>
+                    setJsonText(event.target.value)
+                  }
+                  placeholder={'{\n  "id": "bombones-pera",\n  "title": "Bombones de pera",\n  "status": "idea",\n  "category": "bombones",\n  "priority": "media",\n  "tasks": []\n}'}
+                />
 
-      {generated && (
-        <div className="detail-block">
-          <Space style={{ marginBottom:10 }}>
-            <Button
-              icon={<CopyOutlined />}
-              onClick={() => {
-                navigator.clipboard.writeText(generated);
-                message.success("JSON copiado");
-              }}
-            >
-              Copiar JSON
-            </Button>
-          </Space>
+                <Space style={{ marginTop: 12 }}>
+                  <Button
+                    type="primary"
+                    loading={saving}
+                    onClick={saveFromJson}
+                  >
+                    Guardar proyecto
+                  </Button>
 
-          <pre className="code-block">
-            {generated}
-          </pre>
-        </div>
-      )}
+                  <Button onClick={() => setJsonText("")}>
+                    Limpiar
+                  </Button>
+                </Space>
+              </>
+            )
+          }
+        ]}
+      />
     </Modal>
   );
 };
