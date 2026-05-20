@@ -171,9 +171,9 @@ body {
 
 .detail-block h3 {
   margin: 0 0 8px;
-  color: var(--text);
+  color: #000;
 }
-
+.detail-block .task-list li {color:#000}
 .code-block {
   white-space: pre-wrap;
   background: #0a0908;
