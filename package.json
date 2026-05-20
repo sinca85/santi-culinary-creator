@@ -1,0 +1,23 @@
+{
+  "name": "santi",
+  "version": "1.0.0",
+  "description": "Dashboard estático para organizar proyectos gastronómicos, compras, tareas, recetas y contenido para redes.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinca85/santi-culinary-creator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sinca85/santi-culinary-creator/issues"
+  },
+  "homepage": "https://github.com/sinca85/santi-culinary-creator#readme",
+  "dependencies": {
+    "mongodb": "^7.2.0"
+  }
+}
