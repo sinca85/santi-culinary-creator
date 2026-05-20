@@ -78,6 +78,17 @@ const statusColor = {
   abandonado: "default"
 };
 
+function getProjectId(project) {
+  return project.id || project._id;
+}
+
+function normalizeProject(project) {
+  return {
+    ...project,
+    id: project.id || project._id
+  };
+}
+
 function normalizeText(value) {
   return String(value || "")
     .toLowerCase()
@@ -116,10 +127,7 @@ function buildProjectFromForm(values) {
 
     let type = "produccion";
 
-    if (
-      lower.includes("comprar") ||
-      lower.includes("conseguir")
-    ) {
+    if (lower.includes("comprar") || lower.includes("conseguir")) {
       type = "compra";
     }
 
@@ -220,7 +228,7 @@ function ProjectCard({
           <li key={index}>
             <Checkbox
               checked={task.done}
-              onChange={() => onToggleTask(project.id, index)}
+              onChange={() => onToggleTask(getProjectId(project), index)}
             />
             <span>{task.text}</span>
           </li>
@@ -285,7 +293,7 @@ function DetailDrawer({
             <li key={index} className={task.done ? "done" : ""}>
               <Checkbox
                 checked={task.done}
-                onChange={() => onToggleTask(project.id, index)}
+                onChange={() => onToggleTask(getProjectId(project), index)}
               />
               <span>{task.text}</span>
               <Tag>{TASK_TYPE_LABELS[task.type] || task.type}</Tag>
@@ -358,7 +366,7 @@ function NewProjectModal({ open, onCancel }) {
       width={760}
     >
       <p style={{ color: "var(--muted)" }}>
-        Esto no escribe solo en GitHub todavía. Te genera el JSON para pegarlo como archivo dentro de <strong>data/projects/drafts/</strong>.
+        Esto todavía no guarda en Mongo. Te genera el JSON para revisar/copiar.
       </p>
 
       <Form
@@ -392,19 +400,34 @@ function NewProjectModal({ open, onCancel }) {
         <Row gutter={12}>
           <Col xs={24} md={8}>
             <Form.Item name="status" label="Estado">
-              <Select options={Object.entries(STATUS_LABELS).map(([value, label]) => ({ value, label }))} />
+              <Select
+                options={Object.entries(STATUS_LABELS).map(([value, label]) => ({
+                  value,
+                  label
+                }))}
+              />
             </Form.Item>
           </Col>
 
           <Col xs={24} md={8}>
             <Form.Item name="category" label="Categoría">
-              <Select options={Object.entries(CATEGORY_LABELS).map(([value, label]) => ({ value, label }))} />
+              <Select
+                options={Object.entries(CATEGORY_LABELS).map(([value, label]) => ({
+                  value,
+                  label
+                }))}
+              />
             </Form.Item>
           </Col>
 
           <Col xs={24} md={8}>
             <Form.Item name="priority" label="Prioridad">
-              <Select options={Object.entries(PRIORITY_LABELS).map(([value, label]) => ({ value, label }))} />
+              <Select
+                options={Object.entries(PRIORITY_LABELS).map(([value, label]) => ({
+                  value,
+                  label
+                }))}
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -464,6 +487,7 @@ function Dashboard() {
   const [config, setConfig] = useState({});
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [generatorOpen, setGeneratorOpen] = useState(false);
+  const [loadingProjects, setLoadingProjects] = useState(true);
 
   const [filters, setFilters] = useState({
     search: "",
@@ -476,21 +500,23 @@ function Dashboard() {
   useEffect(() => {
     async function loadProjects() {
       try {
-        const [index, configData] = await Promise.all([
-          fetch("./data/projects/drafts/index.json").then(r => r.json()),
+        setLoadingProjects(true);
+
+        const [projectsData, configData] = await Promise.all([
+          fetch("/api/projects").then(r => {
+            if (!r.ok) throw new Error("No se pudieron cargar los proyectos desde Mongo");
+            return r.json();
+          }),
           fetch("./data/config.json").then(r => r.json())
         ]);
 
-        const projectsData = await Promise.all(
-          index.map(file =>
-            fetch(`./data/projects/drafts/${file}`).then(r => r.json())
-          )
-        );
-
-        setProjects(projectsData);
+        setProjects((projectsData || []).map(normalizeProject));
         setConfig(configData);
       } catch (err) {
         console.error(err);
+        message.error(err.message || "Error al cargar proyectos");
+      } finally {
+        setLoadingProjects(false);
       }
     }
 
@@ -498,13 +524,13 @@ function Dashboard() {
   }, []);
 
   const selectedProject = useMemo(() => {
-    return projects.find(project => project.id === selectedProjectId) || null;
+    return projects.find(project => getProjectId(project) === selectedProjectId) || null;
   }, [projects, selectedProjectId]);
 
   function toggleTask(projectId, taskIndex) {
     setProjects(prev =>
       prev.map(project => {
-        if (project.id !== projectId) return project;
+        if (getProjectId(project) !== projectId) return project;
 
         return {
           ...project,
@@ -581,10 +607,10 @@ function Dashboard() {
 
             <Button
               icon={<LinkOutlined />}
-              href="./data/projects/drafts/index.json"
+              href="/api/projects"
               target="_blank"
             >
-              Ver drafts
+              Ver Mongo
             </Button>
 
             <Button
@@ -600,25 +626,25 @@ function Dashboard() {
         <Row gutter={[16, 16]}>
           <Col xs={12} md={6}>
             <Card className="glass-card summary-card">
-              <Statistic title="Proyectos" value={projects.length} />
+              <Statistic title="Proyectos" value={projects.length} loading={loadingProjects} />
             </Card>
           </Col>
 
           <Col xs={12} md={6}>
             <Card className="glass-card summary-card">
-              <Statistic title="Prioridad alta" value={highPriority} />
+              <Statistic title="Prioridad alta" value={highPriority} loading={loadingProjects} />
             </Card>
           </Col>
 
           <Col xs={12} md={6}>
             <Card className="glass-card summary-card">
-              <Statistic title="Compras pendientes" value={pendingPurchases} />
+              <Statistic title="Compras pendientes" value={pendingPurchases} loading={loadingProjects} />
             </Card>
           </Col>
 
           <Col xs={12} md={6}>
             <Card className="glass-card summary-card">
-              <Statistic title="Contenido redes" value={pendingContent} />
+              <Statistic title="Contenido redes" value={pendingContent} loading={loadingProjects} />
             </Card>
           </Col>
         </Row>
@@ -709,17 +735,17 @@ function Dashboard() {
               children: filteredProjects.length ? (
                 <Row gutter={[16, 16]}>
                   {filteredProjects.map(project => (
-                    <Col xs={24} md={12} xl={8} key={project.id}>
+                    <Col xs={24} md={12} xl={8} key={getProjectId(project)}>
                       <ProjectCard
                         project={project}
-                        onOpen={project => setSelectedProjectId(project.id)}
+                        onOpen={project => setSelectedProjectId(getProjectId(project))}
                         onToggleTask={toggleTask}
                       />
                     </Col>
                   ))}
                 </Row>
               ) : (
-                <Empty description="No hay proyectos con estos filtros." />
+                <Empty description={loadingProjects ? "Cargando proyectos..." : "No hay proyectos con estos filtros."} />
               )
             },
             {
@@ -728,10 +754,10 @@ function Dashboard() {
               children: purchaseProjects.length ? (
                 <Row gutter={[16, 16]}>
                   {purchaseProjects.map(project => (
-                    <Col xs={24} md={12} xl={8} key={project.id}>
+                    <Col xs={24} md={12} xl={8} key={getProjectId(project)}>
                       <ProjectCard
                         project={project}
-                        onOpen={project => setSelectedProjectId(project.id)}
+                        onOpen={project => setSelectedProjectId(getProjectId(project))}
                         onToggleTask={toggleTask}
                       />
                     </Col>
@@ -747,10 +773,10 @@ function Dashboard() {
               children: contentProjects.length ? (
                 <Row gutter={[16, 16]}>
                   {contentProjects.map(project => (
-                    <Col xs={24} md={12} xl={8} key={project.id}>
+                    <Col xs={24} md={12} xl={8} key={getProjectId(project)}>
                       <ProjectCard
                         project={project}
-                        onOpen={project => setSelectedProjectId(project.id)}
+                        onOpen={project => setSelectedProjectId(getProjectId(project))}
                         onToggleTask={toggleTask}
                       />
                     </Col>
