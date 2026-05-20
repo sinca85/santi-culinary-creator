@@ -51,7 +51,12 @@ const PRIORITY_LABELS = {
   "media": "Media",
   "baja": "Baja"
 };
-
+function buildFilterOptions(labels) {
+  return [
+    { value: "", label: "Todos" },
+    ...Object.entries(labels).map(([value, label]) => ({ value, label }))
+  ];
+}
 const TASK_TYPE_LABELS = {
   "compra": "Compra",
   "produccion": "Producción",
@@ -456,7 +461,7 @@ function Dashboard() {
                 onChange={value => setFilters({ ...filters, status: value || "" })}
                 allowClear
                 style={{ width: "100%" }}
-                options={Object.entries(STATUS_LABELS).map(([value, label]) => ({ value, label }))}
+                options={buildFilterOptions(STATUS_LABELS).map(([value, label]) => ({ value, label }))}
               />
             </Col>
             <Col xs={24} sm={8} md={4}>
@@ -466,7 +471,7 @@ function Dashboard() {
                 onChange={value => setFilters({ ...filters, category: value || "" })}
                 allowClear
                 style={{ width: "100%" }}
-                options={Object.entries(CATEGORY_LABELS).map(([value, label]) => ({ value, label }))}
+                options={buildFilterOptions(CATEGORY_LABELS).map(([value, label]) => ({ value, label }))}
               />
             </Col>
             <Col xs={24} sm={8} md={4}>
@@ -476,7 +481,7 @@ function Dashboard() {
                 onChange={value => setFilters({ ...filters, priority: value || "" })}
                 allowClear
                 style={{ width: "100%" }}
-                options={Object.entries(PRIORITY_LABELS).map(([value, label]) => ({ value, label }))}
+                options={buildFilterOptions(PRIORITY_LABELS).map(([value, label]) => ({ value, label }))}
               />
             </Col>
             <Col xs={24} md={4}>
