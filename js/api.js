@@ -62,3 +62,29 @@ window.createProject = async function(project){
 
   return response.json();
 };
+
+window.updateProject = async function(id,updates){
+  const response =
+    await fetch(`${API_BASE_URL}/api/projects`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id,
+        updates
+      })
+    });
+
+  if(!response.ok){
+    const errorData =
+      await response.json().catch(() => ({}));
+
+    throw new Error(
+      errorData.error ||
+      "No se pudo actualizar el proyecto"
+    );
+  }
+
+  return response.json();
+};

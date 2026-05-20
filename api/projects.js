@@ -62,12 +62,34 @@ export default async function handler(req, res) {
         }
 
     if (req.method === "PATCH") {
-        const { id, tasks } = req.body || {};
+        const { id, tasks, updates } = req.body || {};
 
-        if (!id || !Array.isArray(tasks)) {
+        if (!id) {
             return res.status(400).json({
-            error: "Faltan campos: id y tasks"
+            error: "Falta campo: id"
             });
+        }
+
+        let fieldsToSet = {
+            updatedAt: new Date().toISOString()
+        };
+
+        if (Array.isArray(tasks)) {
+            fieldsToSet.tasks = tasks;
+        }
+
+        if (updates && typeof updates === "object") {
+            const {
+            _id,
+            id: ignoredId,
+            createdAt,
+            ...safeUpdates
+            } = updates;
+
+            fieldsToSet = {
+            ...fieldsToSet,
+            ...safeUpdates
+            };
         }
 
         const result = await collection.updateOne(
@@ -78,10 +100,7 @@ export default async function handler(req, res) {
             ]
             },
             {
-            $set: {
-                tasks,
-                updatedAt: new Date().toISOString()
-            }
+            $set: fieldsToSet
             }
         );
 
@@ -92,10 +111,18 @@ export default async function handler(req, res) {
             });
         }
 
+        const updatedProject = await collection.findOne({
+            $or: [
+            { id: id },
+            { _id: id }
+            ]
+        });
+
         return res.status(200).json({
             ok: true,
             matchedCount: result.matchedCount,
-            modifiedCount: result.modifiedCount
+            modifiedCount: result.modifiedCount,
+            project: updatedProject
         });
         }
 
