@@ -61,28 +61,34 @@ window.ProjectCard = function ProjectCard({
       </p>
 
       <div className="meta-row">
-        <Tag color={statusColor[project.status] || "default"}>
-          {STATUS_LABELS[project.status] || project.status}
+        <Tag
+        className="tag-status"
+        color={statusColor[project.status] || "default"}
+        >
+        {STATUS_LABELS[project.status] || project.status}
         </Tag>
 
-        <Tag>
-          {CATEGORY_LABELS[project.category] || project.category}
+        <Tag className="tag-category">
+        {CATEGORY_LABELS[project.category] || project.category}
         </Tag>
 
-        <Tag color={priorityColor[project.priority] || "default"}>
-          Prioridad {PRIORITY_LABELS[project.priority] || project.priority}
+        <Tag
+        className="tag-priority"
+        color={priorityColor[project.priority] || "default"}
+        >
+        Prioridad {PRIORITY_LABELS[project.priority] || project.priority}
         </Tag>
 
         {project.contentPending && (
-          <Tag color="magenta">
+        <Tag className="tag-content" color="magenta">
             Contenido redes
-          </Tag>
+        </Tag>
         )}
 
         {pendingPurchases > 0 && (
-          <Tag color="volcano">
+        <Tag className="tag-purchases" color="volcano">
             {pendingPurchases} compras
-          </Tag>
+        </Tag>
         )}
       </div>
 
