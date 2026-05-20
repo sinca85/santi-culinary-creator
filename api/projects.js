@@ -1,33 +1,49 @@
 import { MongoClient } from "mongodb";
 
-let client;
+let cachedClient = null;
+
+async function connectToMongo() {
+  if (cachedClient) {
+    try {
+      await cachedClient.db("admin").command({ ping: 1 });
+      return cachedClient;
+    } catch (err) {
+      cachedClient = null;
+    }
+  }
+
+  const client = new MongoClient(process.env.MONGO_URI);
+  await client.connect();
+
+  cachedClient = client;
+  return client;
+}
 
 export default async function handler(req, res) {
   try {
-    if (!client) {
-      client = new MongoClient(
-        process.env.MONGO_URI
-      );
-
-      await client.connect();
+    if (!process.env.MONGO_URI) {
+      return res.status(500).json({ error: "Falta MONGO_URI" });
     }
 
-    const db =
-      client.db(process.env.MONGO_DB);
+    if (!process.env.MONGO_DB) {
+      return res.status(500).json({ error: "Falta MONGO_DB" });
+    }
 
-    const projects =
-      await db
-        .collection("projects")
-        .find({})
-        .toArray();
+    const client = await connectToMongo();
+    const db = client.db(process.env.MONGO_DB);
 
-    res.status(200).json(projects);
+    const projects = await db
+      .collection("projects")
+      .find({})
+      .toArray();
 
+    return res.status(200).json(projects);
   } catch (err) {
+    cachedClient = null;
 
-    res.status(500).json({
-      error: err.message
+    return res.status(500).json({
+      error: err.message,
+      name: err.name
     });
-
   }
 }
