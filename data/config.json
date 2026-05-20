@@ -1,0 +1,24 @@
+{
+  "siteTitle": "Santi Villa Abrille - Culinary Creator",
+  "subtitle": "Dashboard personal de proyectos, recetas, compras y contenido.",
+  "statuses": {
+    "idea": "Idea",
+    "investigacion": "Investigación",
+    "en-prueba": "En prueba",
+    "produccion": "Producción",
+    "aprobado": "Aprobado",
+    "abandonado": "Abandonado"
+  },
+  "categories": {
+    "bombones": "Bombones",
+    "tartas": "Tartas",
+    "mousses": "Mousses",
+    "chocolateria": "Chocolatería",
+    "general": "General"
+  },
+  "priorities": {
+    "alta": "Alta",
+    "media": "Media",
+    "baja": "Baja"
+  }
+}
