@@ -457,11 +457,10 @@ function Dashboard() {
             <Col xs={24} sm={8} md={4}>
               <Select
                 placeholder="Estado"
-                value={filters.status || undefined}
-                onChange={value => setFilters({ ...filters, status: value || "" })}
-                allowClear
+                value={filters.status}
+                onChange={value => setFilters({ ...filters, status: value })}
                 style={{ width: "100%" }}
-                options={buildFilterOptions(STATUS_LABELS).map(([value, label]) => ({ value, label }))}
+                options={buildFilterOptions(STATUS_LABELS)}
               />
             </Col>
             <Col xs={24} sm={8} md={4}>
@@ -471,7 +470,7 @@ function Dashboard() {
                 onChange={value => setFilters({ ...filters, category: value || "" })}
                 allowClear
                 style={{ width: "100%" }}
-                options={buildFilterOptions(CATEGORY_LABELS).map(([value, label]) => ({ value, label }))}
+                options={buildFilterOptions(CATEGORY_LABELS)}
               />
             </Col>
             <Col xs={24} sm={8} md={4}>
@@ -481,7 +480,7 @@ function Dashboard() {
                 onChange={value => setFilters({ ...filters, priority: value || "" })}
                 allowClear
                 style={{ width: "100%" }}
-                options={buildFilterOptions(PRIORITY_LABELS).map(([value, label]) => ({ value, label }))}
+                options={buildFilterOptions(PRIORITY_LABELS)}
               />
             </Col>
             <Col xs={24} md={4}>
