@@ -503,7 +503,7 @@ function Dashboard() {
         setLoadingProjects(true);
 
         const [projectsData, configData] = await Promise.all([
-          fetch("/api/projects").then(r => {
+          fetch("https://santi-culinary-creator.vercel.app/api/projects").then(r => {
             if (!r.ok) throw new Error("No se pudieron cargar los proyectos desde Mongo");
             return r.json();
           }),
