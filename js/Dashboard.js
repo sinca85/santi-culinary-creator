@@ -111,33 +111,75 @@ window.Dashboard = function Dashboard() {
       selectedProjectId
     ]);
 
-  function toggleTask(projectId,taskIndex){
+    async function toggleTask(projectId,taskIndex){
+
+    const currentProject =
+        projects.find(
+        project =>
+            getProjectId(project) === projectId
+        );
+
+    if(!currentProject) return;
+
+    const updatedTasks =
+        (currentProject.tasks || [])
+        .map((task,index) =>
+            index === taskIndex
+            ? {
+                ...task,
+                done: !task.done
+                }
+            : task
+        );
 
     setProjects(prev =>
-      prev.map(project => {
+        prev.map(project => {
 
         if(getProjectId(project) !== projectId){
-          return project;
+            return project;
         }
 
         return {
-          ...project,
-          tasks:
-            (project.tasks || [])
-              .map((task,index) =>
-                index === taskIndex
-                  ? {
-                      ...task,
-                      done: !task.done
-                    }
-                  : task
-              )
+            ...project,
+            tasks: updatedTasks
         };
 
-      })
+        })
     );
 
-  }
+    try {
+
+        await updateProjectTasks(
+        projectId,
+        updatedTasks
+        );
+
+        message.success("Tarea actualizada");
+
+    } catch(err){
+
+        console.error(err);
+
+        message.error(
+        err.message ||
+        "No se pudo guardar la tarea"
+        );
+
+        setProjects(prev =>
+        prev.map(project => {
+
+            if(getProjectId(project) !== projectId){
+            return project;
+            }
+
+            return currentProject;
+
+        })
+        );
+
+    }
+
+    }
 
   const filteredProjects =
     useMemo(() => {

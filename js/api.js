@@ -13,3 +13,29 @@ window.fetchProjects = async function(){
 
   return response.json();
 };
+
+window.updateProjectTasks = async function(id,tasks){
+  const response =
+    await fetch(`${API_BASE_URL}/api/projects`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id,
+        tasks
+      })
+    });
+
+  if(!response.ok){
+    const errorData =
+      await response.json().catch(() => ({}));
+
+    throw new Error(
+      errorData.error ||
+      "No se pudieron guardar las tareas"
+    );
+  }
+
+  return response.json();
+};
