@@ -25,17 +25,37 @@ window.ProjectCard = function ProjectCard({
 
   return (
     <Card
-      className="glass-card project-card"
-      title={project.title}
-      extra={
-        <Button
-          size="small"
-          onClick={() => onOpen(project)}
+        className={`glass-card project-card ${
+            project.coverImage ? "has-cover" : ""
+        }`}
+
+        style={
+            project.coverImage
+            ? {
+                backgroundImage:
+                    `linear-gradient(
+                    rgba(0,0,0,.65),
+                    rgba(0,0,0,.85)
+                    ),
+                    url(${project.coverImage})`,
+
+                backgroundSize: "cover",
+                backgroundPosition: "center"
+                }
+            : {}
+        }
+
+        title={project.title}
+
+        extra={
+            <Button
+            size="small"
+            onClick={() => onOpen(project)}
+            >
+            Abrir
+            </Button>
+        }
         >
-          Abrir
-        </Button>
-      }
-    >
       <p className="project-goal">
         {project.goal}
       </p>

@@ -313,3 +313,32 @@ body {
   background: rgba(0,0,0,.72) !important;
   backdrop-filter: blur(3px);
 }
+.project-card.has-cover {
+
+  min-height: 260px;
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(255,255,255,.08);
+
+}
+
+.project-card.has-cover .ant-card-body,
+.project-card.has-cover .ant-card-head {
+
+  background: transparent;
+
+}
+
+.project-card.has-cover * {
+
+  color: white !important;
+
+}
+
+.project-card.has-cover .ant-tag {
+
+  backdrop-filter: blur(6px);
+
+}
