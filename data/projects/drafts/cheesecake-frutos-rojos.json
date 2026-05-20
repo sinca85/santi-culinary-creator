@@ -1,0 +1,43 @@
+{
+  "id": "cheesecake-frutos-rojos",
+  "title": "Cheesecake clásica con frutos rojos",
+  "status": "idea",
+  "category": "tartas",
+  "priority": "media",
+  "goal": "Crear cheesecake estable para fotos, receta repetible y posible reel.",
+  "contentPending": true,
+  "dateTarget": "",
+  "coverImage": "",
+  "links": {
+    "youtube": "",
+    "instagram": "",
+    "tiktok": "",
+    "photos": ""
+  },
+  "tasks": [
+    { "text": "Comprar queso crema", "done": false, "type": "compra" },
+    { "text": "Comprar crema de leche", "done": false, "type": "compra" },
+    { "text": "Comprar galletitas para base", "done": false, "type": "compra" },
+    { "text": "Comprar manteca", "done": false, "type": "compra" },
+    { "text": "Definir cobertura", "done": false, "type": "produccion" },
+    { "text": "Hacer primera prueba", "done": false, "type": "produccion" },
+    { "text": "Sacar fotos", "done": false, "type": "contenido" },
+    { "text": "Grabar reel", "done": false, "type": "contenido" }
+  ],
+  "notes": [
+    "Probar versión económica.",
+    "Evaluar gelatina para mayor estabilidad.",
+    "Revisar cobertura brillante vs fruta fresca."
+  ],
+  "recipe": {
+    "ingredients": [
+      "Queso crema",
+      "Crema de leche",
+      "Galletitas para base",
+      "Manteca",
+      "Frutos rojos"
+    ],
+    "steps": [],
+    "result": "Sin probar"
+  }
+}

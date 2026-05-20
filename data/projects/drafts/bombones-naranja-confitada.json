@@ -1,0 +1,34 @@
+{
+  "id": "bombones-naranja-confitada",
+  "title": "Bombones de naranja confitada",
+  "status": "idea",
+  "category": "bombones",
+  "priority": "alta",
+  "goal": "Crear bombón con naranja confitada y chocolate, apto para fotos y posible reel.",
+  "contentPending": true,
+  "dateTarget": "",
+  "coverImage": "",
+  "links": {
+    "youtube": "",
+    "instagram": "",
+    "tiktok": "",
+    "photos": ""
+  },
+  "tasks": [
+    { "text": "Comprar glucosa", "done": false, "type": "compra" },
+    { "text": "Comprar chocolate blanco", "done": false, "type": "compra" },
+    { "text": "Probar naranja con doble hervor", "done": false, "type": "produccion" },
+    { "text": "Definir relleno", "done": false, "type": "produccion" },
+    { "text": "Sacar fotos", "done": false, "type": "contenido" },
+    { "text": "Grabar reel", "done": false, "type": "contenido" }
+  ],
+  "notes": [
+    "Revisar amargor de la piel.",
+    "Evaluar cobertura con chocolate semiamargo."
+  ],
+  "recipe": {
+    "ingredients": [],
+    "steps": [],
+    "result": "Sin probar"
+  }
+}

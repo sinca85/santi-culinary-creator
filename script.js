@@ -356,13 +356,35 @@ function Dashboard() {
   });
 
   useEffect(() => {
-    Promise.all([
-      fetch("./data/projects.json").then(response => response.json()),
-      fetch("./data/config.json").then(response => response.json())
-    ]).then(([projectsData, configData]) => {
-      setProjects(projectsData);
-      setConfig(configData);
-    });
+    async function loadProjects() {
+      try {
+
+        const [index, configData] = await Promise.all([
+          fetch("./data/projects/drafts/index.json")
+            .then(r => r.json()),
+
+          fetch("./data/config.json")
+            .then(r => r.json())
+        ]);
+
+        const projectsData =
+          await Promise.all(
+            index.map(file =>
+              fetch(`./data/projects/drafts/${file}`)
+                .then(r => r.json())
+            )
+          );
+
+        setProjects(projectsData);
+        setConfig(configData);
+
+      } catch(err) {
+        console.error(err);
+      }
+    }
+
+    loadProjects();
+
   }, []);
 
   const filteredProjects = useMemo(() => {
