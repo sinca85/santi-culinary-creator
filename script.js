@@ -607,7 +607,7 @@ function Dashboard() {
 
             <Button
               icon={<LinkOutlined />}
-              href="/api/projects"
+              href="https://santi-culinary-creator.vercel.app/api/projects"
               target="_blank"
             >
               Ver Mongo
