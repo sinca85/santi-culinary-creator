@@ -36,30 +36,42 @@ export default async function handler(req, res) {
     }
 
     if (req.method === "PATCH") {
-      const { id, tasks } = req.body || {};
+        const { id, tasks } = req.body || {};
 
-      if (!id || !Array.isArray(tasks)) {
-        return res.status(400).json({
-          error: "Faltan campos: id y tasks"
-        });
-      }
-
-      const result = await collection.updateOne(
-        { _id: id },
-        {
-          $set: {
-            tasks,
-            updatedAt: new Date().toISOString()
-          }
+        if (!id || !Array.isArray(tasks)) {
+            return res.status(400).json({
+            error: "Faltan campos: id y tasks"
+            });
         }
-      );
 
-      return res.status(200).json({
-        ok: true,
-        matchedCount: result.matchedCount,
-        modifiedCount: result.modifiedCount
-      });
-    }
+        const result = await collection.updateOne(
+            {
+            $or: [
+                { id: id },
+                { _id: id }
+            ]
+            },
+            {
+            $set: {
+                tasks,
+                updatedAt: new Date().toISOString()
+            }
+            }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(404).json({
+            error: "Proyecto no encontrado",
+            id
+            });
+        }
+
+        return res.status(200).json({
+            ok: true,
+            matchedCount: result.matchedCount,
+            modifiedCount: result.modifiedCount
+        });
+        }
 
     return res.status(405).json({
       error: "Método no permitido"
