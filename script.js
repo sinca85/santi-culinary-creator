@@ -1,4 +1,3 @@
-
 const {
   App,
   Button,
@@ -16,7 +15,6 @@ const {
   Statistic,
   Tag,
   Tabs,
-  Typography,
   message
 } = antd;
 
@@ -30,37 +28,39 @@ const {
 const { useEffect, useMemo, useState } = React;
 
 const STATUS_LABELS = {
-  "idea": "Idea",
-  "investigacion": "Investigación",
+  idea: "Idea",
+  investigacion: "Investigación",
   "en-prueba": "En prueba",
-  "produccion": "Producción",
-  "aprobado": "Aprobado",
-  "abandonado": "Abandonado"
+  produccion: "Producción",
+  aprobado: "Aprobado",
+  abandonado: "Abandonado"
 };
 
 const CATEGORY_LABELS = {
-  "bombones": "Bombones",
-  "tartas": "Tartas",
-  "mousses": "Mousses",
-  "chocolateria": "Chocolatería",
-  "general": "General"
+  bombones: "Bombones",
+  tartas: "Tartas",
+  mousses: "Mousses",
+  chocolateria: "Chocolatería",
+  general: "General"
 };
 
 const PRIORITY_LABELS = {
-  "alta": "Alta",
-  "media": "Media",
-  "baja": "Baja"
+  alta: "Alta",
+  media: "Media",
+  baja: "Baja"
 };
+
 function buildFilterOptions(labels) {
   return [
     { value: "", label: "Todos" },
     ...Object.entries(labels).map(([value, label]) => ({ value, label }))
   ];
 }
+
 const TASK_TYPE_LABELS = {
-  "compra": "Compra",
-  "produccion": "Producción",
-  "contenido": "Contenido"
+  compra: "Compra",
+  produccion: "Producción",
+  contenido: "Contenido"
 };
 
 const priorityColor = {
@@ -79,7 +79,10 @@ const statusColor = {
 };
 
 function normalizeText(value) {
-  return String(value || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
 function slugify(value) {
@@ -90,24 +93,50 @@ function slugify(value) {
 
 function countPendingTasks(projects, type) {
   return projects.reduce((total, project) => {
-    return total + (project.tasks || []).filter(task => !task.done && (!type || task.type === type)).length;
+    return total + (project.tasks || []).filter(task =>
+      !task.done && (!type || task.type === type)
+    ).length;
   }, 0);
 }
 
 function buildProjectFromForm(values) {
   const title = values.title || "Nuevo proyecto";
+
   const rawTasks = (values.tasks || "")
     .split("\n")
     .map(item => item.trim())
     .filter(Boolean);
 
   const tasks = rawTasks.map(text => {
-    const clean = text.replace(/^- \[ \]\s*/i, "").replace(/^-\s*/, "");
+    const clean = text
+      .replace(/^- \[ \]\s*/i, "")
+      .replace(/^-\s*/, "");
+
     const lower = normalizeText(clean);
+
     let type = "produccion";
-    if (lower.includes("comprar") || lower.includes("conseguir")) type = "compra";
-    if (lower.includes("foto") || lower.includes("reel") || lower.includes("video") || lower.includes("publicar")) type = "contenido";
-    return { text: clean, done: false, type };
+
+    if (
+      lower.includes("comprar") ||
+      lower.includes("conseguir")
+    ) {
+      type = "compra";
+    }
+
+    if (
+      lower.includes("foto") ||
+      lower.includes("reel") ||
+      lower.includes("video") ||
+      lower.includes("publicar")
+    ) {
+      type = "contenido";
+    }
+
+    return {
+      text: clean,
+      done: false,
+      type
+    };
   });
 
   return {
@@ -127,7 +156,10 @@ function buildProjectFromForm(values) {
       photos: ""
     },
     tasks,
-    notes: (values.notes || "").split("\n").map(item => item.trim()).filter(Boolean),
+    notes: (values.notes || "")
+      .split("\n")
+      .map(item => item.trim())
+      .filter(Boolean),
     recipe: {
       ingredients: [],
       steps: [],
@@ -136,30 +168,60 @@ function buildProjectFromForm(values) {
   };
 }
 
-function ProjectCard({ project, onOpen }) {
-  const pendingTasks = (project.tasks || []).filter(task => !task.done);
-  const pendingPurchases = pendingTasks.filter(task => task.type === "compra").length;
+function ProjectCard({
+  project,
+  onOpen,
+  onToggleTask
+}) {
+  const pendingTasks = (project.tasks || [])
+    .map((task, index) => ({ task, index }))
+    .filter(item => !item.task.done);
+
+  const pendingPurchases = pendingTasks.filter(
+    item => item.task.type === "compra"
+  ).length;
 
   return (
     <Card
       className="glass-card project-card"
       title={project.title}
-      extra={<Button size="small" onClick={() => onOpen(project)}>Abrir</Button>}
+      extra={
+        <Button size="small" onClick={() => onOpen(project)}>
+          Abrir
+        </Button>
+      }
     >
       <p className="project-goal">{project.goal}</p>
 
       <div className="meta-row">
-        <Tag color={statusColor[project.status] || "default"}>{STATUS_LABELS[project.status] || project.status}</Tag>
-        <Tag>{CATEGORY_LABELS[project.category] || project.category}</Tag>
-        <Tag color={priorityColor[project.priority] || "default"}>Prioridad {PRIORITY_LABELS[project.priority] || project.priority}</Tag>
-        {project.contentPending && <Tag color="magenta">Contenido redes</Tag>}
-        {pendingPurchases > 0 && <Tag color="volcano">{pendingPurchases} compras</Tag>}
+        <Tag color={statusColor[project.status] || "default"}>
+          {STATUS_LABELS[project.status] || project.status}
+        </Tag>
+
+        <Tag>
+          {CATEGORY_LABELS[project.category] || project.category}
+        </Tag>
+
+        <Tag color={priorityColor[project.priority] || "default"}>
+          Prioridad {PRIORITY_LABELS[project.priority] || project.priority}
+        </Tag>
+
+        {project.contentPending && (
+          <Tag color="magenta">Contenido redes</Tag>
+        )}
+
+        {pendingPurchases > 0 && (
+          <Tag color="volcano">{pendingPurchases} compras</Tag>
+        )}
       </div>
 
       <ul className="task-list">
-        {pendingTasks.slice(0, 4).map((task, index) => (
+        {pendingTasks.slice(0, 4).map(({ task, index }) => (
           <li key={index}>
-            <Checkbox checked={task.done} />
+            <Checkbox
+              checked={task.done}
+              onChange={() => onToggleTask(project.id, index)}
+            />
             <span>{task.text}</span>
           </li>
         ))}
@@ -168,7 +230,11 @@ function ProjectCard({ project, onOpen }) {
   );
 }
 
-function DetailDrawer({ project, onClose }) {
+function DetailDrawer({
+  project,
+  onClose,
+  onToggleTask
+}) {
   if (!project) return null;
 
   const jsonSnippet = JSON.stringify(project, null, 2);
@@ -193,9 +259,17 @@ function DetailDrawer({ project, onClose }) {
       }
     >
       <Space wrap>
-        <Tag color={statusColor[project.status] || "default"}>{STATUS_LABELS[project.status] || project.status}</Tag>
-        <Tag>{CATEGORY_LABELS[project.category] || project.category}</Tag>
-        <Tag color={priorityColor[project.priority] || "default"}>Prioridad {PRIORITY_LABELS[project.priority] || project.priority}</Tag>
+        <Tag color={statusColor[project.status] || "default"}>
+          {STATUS_LABELS[project.status] || project.status}
+        </Tag>
+
+        <Tag>
+          {CATEGORY_LABELS[project.category] || project.category}
+        </Tag>
+
+        <Tag color={priorityColor[project.priority] || "default"}>
+          Prioridad {PRIORITY_LABELS[project.priority] || project.priority}
+        </Tag>
       </Space>
 
       <div className="detail-block">
@@ -205,10 +279,14 @@ function DetailDrawer({ project, onClose }) {
 
       <div className="detail-block">
         <h3>Tareas</h3>
+
         <ul className="task-list">
           {(project.tasks || []).map((task, index) => (
             <li key={index} className={task.done ? "done" : ""}>
-              <Checkbox checked={task.done} />
+              <Checkbox
+                checked={task.done}
+                onChange={() => onToggleTask(project.id, index)}
+              />
               <span>{task.text}</span>
               <Tag>{TASK_TYPE_LABELS[task.type] || task.type}</Tag>
             </li>
@@ -218,9 +296,12 @@ function DetailDrawer({ project, onClose }) {
 
       <div className="detail-block">
         <h3>Notas</h3>
+
         {(project.notes || []).length ? (
           <ul>
-            {project.notes.map((note, index) => <li key={index}>{note}</li>)}
+            {project.notes.map((note, index) => (
+              <li key={index}>{note}</li>
+            ))}
           </ul>
         ) : (
           <p>Sin notas.</p>
@@ -229,11 +310,24 @@ function DetailDrawer({ project, onClose }) {
 
       <div className="detail-block">
         <h3>Links</h3>
+
         <Space direction="vertical">
-          {Object.entries(project.links || {}).map(([key, value]) => (
-            value ? <a key={key} href={value} target="_blank" rel="noreferrer">{key}</a> : null
-          ))}
-          {!Object.values(project.links || {}).some(Boolean) && <p>Sin links cargados.</p>}
+          {Object.entries(project.links || {}).map(([key, value]) =>
+            value ? (
+              <a
+                key={key}
+                href={value}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {key}
+              </a>
+            ) : null
+          )}
+
+          {!Object.values(project.links || {}).some(Boolean) && (
+            <p>Sin links cargados.</p>
+          )}
         </Space>
       </div>
 
@@ -264,21 +358,30 @@ function NewProjectModal({ open, onCancel }) {
       width={760}
     >
       <p style={{ color: "var(--muted)" }}>
-        Esto no escribe solo en GitHub todavía. Te genera el bloque JSON para pegarlo en <strong>data/projects.json</strong>.
+        Esto no escribe solo en GitHub todavía. Te genera el JSON para pegarlo como archivo dentro de <strong>data/projects/drafts/</strong>.
       </p>
 
-      <Form form={form} layout="vertical" initialValues={{
-        status: "idea",
-        category: "general",
-        priority: "media",
-        contentPending: true
-      }}>
+      <Form
+        form={form}
+        layout="vertical"
+        initialValues={{
+          status: "idea",
+          category: "general",
+          priority: "media",
+          contentPending: true
+        }}
+      >
         <Row gutter={12}>
           <Col xs={24} md={12}>
-            <Form.Item name="title" label="Proyecto" rules={[{ required: true }]}>
+            <Form.Item
+              name="title"
+              label="Proyecto"
+              rules={[{ required: true }]}
+            >
               <Input placeholder="Cheesecake frutos rojos" />
             </Form.Item>
           </Col>
+
           <Col xs={24} md={12}>
             <Form.Item name="goal" label="Objetivo">
               <Input placeholder="Receta repetible + fotos + reel" />
@@ -292,11 +395,13 @@ function NewProjectModal({ open, onCancel }) {
               <Select options={Object.entries(STATUS_LABELS).map(([value, label]) => ({ value, label }))} />
             </Form.Item>
           </Col>
+
           <Col xs={24} md={8}>
             <Form.Item name="category" label="Categoría">
               <Select options={Object.entries(CATEGORY_LABELS).map(([value, label]) => ({ value, label }))} />
             </Form.Item>
           </Col>
+
           <Col xs={24} md={8}>
             <Form.Item name="priority" label="Prioridad">
               <Select options={Object.entries(PRIORITY_LABELS).map(([value, label]) => ({ value, label }))} />
@@ -309,16 +414,27 @@ function NewProjectModal({ open, onCancel }) {
         </Form.Item>
 
         <Form.Item name="tasks" label="Checklist">
-          <Input.TextArea rows={6} placeholder={"- [ ] Comprar queso crema\n- [ ] Comprar crema de leche\n- [ ] Sacar fotos\n- [ ] Grabar reel"} />
+          <Input.TextArea
+            rows={6}
+            placeholder={"- [ ] Comprar queso crema\n- [ ] Comprar crema de leche\n- [ ] Sacar fotos\n- [ ] Grabar reel"}
+          />
         </Form.Item>
 
         <Form.Item name="notes" label="Notas">
-          <Input.TextArea rows={3} placeholder={"Probar versión económica\nEvaluar textura"} />
+          <Input.TextArea
+            rows={3}
+            placeholder={"Probar versión económica\nEvaluar textura"}
+          />
         </Form.Item>
 
         <Space>
-          <Button type="primary" onClick={onGenerate}>Generar JSON</Button>
-          <Button onClick={() => form.resetFields()}>Limpiar</Button>
+          <Button type="primary" onClick={onGenerate}>
+            Generar JSON
+          </Button>
+
+          <Button onClick={() => form.resetFields()}>
+            Limpiar
+          </Button>
         </Space>
       </Form>
 
@@ -335,6 +451,7 @@ function NewProjectModal({ open, onCancel }) {
               Copiar JSON
             </Button>
           </Space>
+
           <pre className="code-block">{generated}</pre>
         </div>
       )}
@@ -345,8 +462,9 @@ function NewProjectModal({ open, onCancel }) {
 function Dashboard() {
   const [projects, setProjects] = useState([]);
   const [config, setConfig] = useState({});
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [generatorOpen, setGeneratorOpen] = useState(false);
+
   const [filters, setFilters] = useState({
     search: "",
     status: "",
@@ -358,34 +476,50 @@ function Dashboard() {
   useEffect(() => {
     async function loadProjects() {
       try {
-
         const [index, configData] = await Promise.all([
-          fetch("./data/projects/drafts/index.json")
-            .then(r => r.json()),
-
-          fetch("./data/config.json")
-            .then(r => r.json())
+          fetch("./data/projects/drafts/index.json").then(r => r.json()),
+          fetch("./data/config.json").then(r => r.json())
         ]);
 
-        const projectsData =
-          await Promise.all(
-            index.map(file =>
-              fetch(`./data/projects/drafts/${file}`)
-                .then(r => r.json())
-            )
-          );
+        const projectsData = await Promise.all(
+          index.map(file =>
+            fetch(`./data/projects/drafts/${file}`).then(r => r.json())
+          )
+        );
 
         setProjects(projectsData);
         setConfig(configData);
-
-      } catch(err) {
+      } catch (err) {
         console.error(err);
       }
     }
 
     loadProjects();
-
   }, []);
+
+  const selectedProject = useMemo(() => {
+    return projects.find(project => project.id === selectedProjectId) || null;
+  }, [projects, selectedProjectId]);
+
+  function toggleTask(projectId, taskIndex) {
+    setProjects(prev =>
+      prev.map(project => {
+        if (project.id !== projectId) return project;
+
+        return {
+          ...project,
+          tasks: (project.tasks || []).map((task, index) =>
+            index === taskIndex
+              ? {
+                  ...task,
+                  done: !task.done
+                }
+              : task
+          )
+        };
+      })
+    );
+  }
 
   const filteredProjects = useMemo(() => {
     const search = normalizeText(filters.search);
@@ -426,18 +560,38 @@ function Dashboard() {
         <header className="app-header">
           <div>
             <p className="eyebrow">Culinary dashboard</p>
-            <h1 className="app-title">{config.siteTitle || "Santi Villa Abrille - Culinary Creator"}</h1>
-            <p className="app-subtitle">{config.subtitle || "Dashboard personal de proyectos gastronómicos."}</p>
+
+            <h1 className="app-title">
+              {config.siteTitle || "Santi Villa Abrille - Culinary Creator"}
+            </h1>
+
+            <p className="app-subtitle">
+              {config.subtitle || "Dashboard personal de proyectos gastronómicos."}
+            </p>
           </div>
 
           <div className="header-actions">
-            <Button icon={<PlusOutlined />} type="primary" onClick={() => setGeneratorOpen(true)}>
+            <Button
+              icon={<PlusOutlined />}
+              type="primary"
+              onClick={() => setGeneratorOpen(true)}
+            >
               Generar proyecto
             </Button>
-            <Button icon={<LinkOutlined />} href="./data/projects.json" target="_blank">
-              Ver JSON
+
+            <Button
+              icon={<LinkOutlined />}
+              href="./data/projects/drafts/index.json"
+              target="_blank"
+            >
+              Ver drafts
             </Button>
-            <Button icon={<GithubOutlined />} href="https://github.com/" target="_blank">
+
+            <Button
+              icon={<GithubOutlined />}
+              href="https://github.com/sinca85/santi-culinary-creator"
+              target="_blank"
+            >
               GitHub
             </Button>
           </div>
@@ -449,16 +603,19 @@ function Dashboard() {
               <Statistic title="Proyectos" value={projects.length} />
             </Card>
           </Col>
+
           <Col xs={12} md={6}>
             <Card className="glass-card summary-card">
               <Statistic title="Prioridad alta" value={highPriority} />
             </Card>
           </Col>
+
           <Col xs={12} md={6}>
             <Card className="glass-card summary-card">
               <Statistic title="Compras pendientes" value={pendingPurchases} />
             </Card>
           </Col>
+
           <Col xs={12} md={6}>
             <Card className="glass-card summary-card">
               <Statistic title="Contenido redes" value={pendingContent} />
@@ -472,43 +629,70 @@ function Dashboard() {
               <Input.Search
                 placeholder="Buscar proyecto, tarea o nota..."
                 value={filters.search}
-                onChange={event => setFilters({ ...filters, search: event.target.value })}
+                onChange={event =>
+                  setFilters({
+                    ...filters,
+                    search: event.target.value
+                  })
+                }
                 allowClear
               />
             </Col>
+
             <Col xs={24} sm={8} md={4}>
               <Select
                 placeholder="Estado"
                 value={filters.status}
-                onChange={value => setFilters({ ...filters, status: value })}
+                onChange={value =>
+                  setFilters({
+                    ...filters,
+                    status: value
+                  })
+                }
                 style={{ width: "100%" }}
                 options={buildFilterOptions(STATUS_LABELS)}
               />
             </Col>
+
             <Col xs={24} sm={8} md={4}>
               <Select
                 placeholder="Categoría"
-                value={filters.category || undefined}
-                onChange={value => setFilters({ ...filters, category: value || "" })}
-                allowClear
+                value={filters.category}
+                onChange={value =>
+                  setFilters({
+                    ...filters,
+                    category: value
+                  })
+                }
                 style={{ width: "100%" }}
                 options={buildFilterOptions(CATEGORY_LABELS)}
               />
             </Col>
+
             <Col xs={24} sm={8} md={4}>
               <Select
                 placeholder="Prioridad"
-                value={filters.priority || undefined}
-                onChange={value => setFilters({ ...filters, priority: value || "" })}
-                allowClear
+                value={filters.priority}
+                onChange={value =>
+                  setFilters({
+                    ...filters,
+                    priority: value
+                  })
+                }
                 style={{ width: "100%" }}
                 options={buildFilterOptions(PRIORITY_LABELS)}
               />
             </Col>
+
             <Col xs={24} md={4}>
               <Checkbox
                 checked={filters.contentOnly}
-                onChange={event => setFilters({ ...filters, contentOnly: event.target.checked })}
+                onChange={event =>
+                  setFilters({
+                    ...filters,
+                    contentOnly: event.target.checked
+                  })
+                }
               >
                 Contenido redes
               </Checkbox>
@@ -522,53 +706,73 @@ function Dashboard() {
             {
               key: "todos",
               label: "Todos",
-              children: (
-                filteredProjects.length ? (
-                  <Row gutter={[16, 16]}>
-                    {filteredProjects.map(project => (
-                      <Col xs={24} md={12} xl={8} key={project.id}>
-                        <ProjectCard project={project} onOpen={setSelectedProject} />
-                      </Col>
-                    ))}
-                  </Row>
-                ) : <Empty description="No hay proyectos con estos filtros." />
+              children: filteredProjects.length ? (
+                <Row gutter={[16, 16]}>
+                  {filteredProjects.map(project => (
+                    <Col xs={24} md={12} xl={8} key={project.id}>
+                      <ProjectCard
+                        project={project}
+                        onOpen={project => setSelectedProjectId(project.id)}
+                        onToggleTask={toggleTask}
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              ) : (
+                <Empty description="No hay proyectos con estos filtros." />
               )
             },
             {
               key: "compras",
               label: "Compras pendientes",
-              children: (
-                purchaseProjects.length ? (
-                  <Row gutter={[16, 16]}>
-                    {purchaseProjects.map(project => (
-                      <Col xs={24} md={12} xl={8} key={project.id}>
-                        <ProjectCard project={project} onOpen={setSelectedProject} />
-                      </Col>
-                    ))}
-                  </Row>
-                ) : <Empty description="No hay compras pendientes." />
+              children: purchaseProjects.length ? (
+                <Row gutter={[16, 16]}>
+                  {purchaseProjects.map(project => (
+                    <Col xs={24} md={12} xl={8} key={project.id}>
+                      <ProjectCard
+                        project={project}
+                        onOpen={project => setSelectedProjectId(project.id)}
+                        onToggleTask={toggleTask}
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              ) : (
+                <Empty description="No hay compras pendientes." />
               )
             },
             {
               key: "contenido",
               label: "Contenido redes",
-              children: (
-                contentProjects.length ? (
-                  <Row gutter={[16, 16]}>
-                    {contentProjects.map(project => (
-                      <Col xs={24} md={12} xl={8} key={project.id}>
-                        <ProjectCard project={project} onOpen={setSelectedProject} />
-                      </Col>
-                    ))}
-                  </Row>
-                ) : <Empty description="No hay contenido pendiente." />
+              children: contentProjects.length ? (
+                <Row gutter={[16, 16]}>
+                  {contentProjects.map(project => (
+                    <Col xs={24} md={12} xl={8} key={project.id}>
+                      <ProjectCard
+                        project={project}
+                        onOpen={project => setSelectedProjectId(project.id)}
+                        onToggleTask={toggleTask}
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              ) : (
+                <Empty description="No hay contenido pendiente." />
               )
             }
           ]}
         />
 
-        <DetailDrawer project={selectedProject} onClose={() => setSelectedProject(null)} />
-        <NewProjectModal open={generatorOpen} onCancel={() => setGeneratorOpen(false)} />
+        <DetailDrawer
+          project={selectedProject}
+          onClose={() => setSelectedProjectId(null)}
+          onToggleTask={toggleTask}
+        />
+
+        <NewProjectModal
+          open={generatorOpen}
+          onCancel={() => setGeneratorOpen(false)}
+        />
       </div>
     </App>
   );

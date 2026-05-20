@@ -261,3 +261,25 @@ body {
     justify-content: flex-start;
   }
 }
+/* Input buscador */
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-search .ant-input {
+  background: rgba(255,255,255,.95) !important;
+  color: #111 !important;
+  border: none !important;
+}
+
+.ant-input::placeholder {
+  color: #666 !important;
+}
+
+.ant-input-affix-wrapper input {
+  color: #111 !important;
+}
+
+.ant-input-search-button {
+  background: #111 !important;
+  border-color: #111 !important;
+}
