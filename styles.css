@@ -26,7 +26,7 @@ body {
 .app-shell {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 32px 20px 56px;
+  padding: 24px 20px 56px;
 }
 
 .app-header {
@@ -34,11 +34,11 @@ body {
   justify-content: space-between;
   gap: 20px;
   align-items: flex-start;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .eyebrow {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -49,16 +49,16 @@ body {
 .app-title {
   margin: 0;
   color: #fff;
-  font-size: clamp(32px, 5vw, 58px);
+  font-size: 3rem;
   line-height: 0.95;
   letter-spacing: -0.055em;
 }
 
 .app-subtitle {
-  margin: 14px 0 0;
+  margin: 10px 0 0;
   max-width: 640px;
   color: var(--muted);
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .header-actions {
@@ -77,33 +77,32 @@ body {
 }
 
 .summary-card {
-  min-height: 90px !important;
-  border-radius: 20px !important;
+  min-height: 68px !important;
+  border-radius: 18px !important;
 }
 
 .summary-card .ant-card-body {
-  padding: 18px 24px !important;
-}
-
-.summary-card .ant-statistic-title {
-  font-size: 14px !important;
-  margin-bottom: 4px !important;
-}
-
-.summary-card .ant-statistic-content {
-  font-size: 18px !important;
+  padding: 10px 14px !important;
 }
 
 .summary-card .ant-statistic-title {
   color: var(--muted) !important;
+  font-size: 13px !important;
+  margin-bottom: 2px !important;
 }
 
 .summary-card .ant-statistic-content {
   color: var(--text) !important;
+  font-size: 18px !important;
+  line-height: 1.1 !important;
 }
 
 .controls-card {
   margin: 10px 0 18px;
+}
+
+.controls-card .ant-card-body {
+  padding: 14px !important;
 }
 
 .section-title {
@@ -111,7 +110,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin: 26px 0 12px;
+  margin: 22px 0 10px;
 }
 
 .section-title h2 {
@@ -401,15 +400,8 @@ body {
   backdrop-filter: blur(3px);
 }
 
-@media (max-width: 720px) {
-  .app-header {
-    flex-direction: column;
-  }
+/* Login */
 
-  .header-actions {
-    justify-content: flex-start;
-  }
-}
 .login-shell{
   min-height:100vh;
   display:flex;
@@ -421,4 +413,18 @@ body {
 .login-card{
   width:100%;
   max-width:420px;
+}
+
+@media (max-width: 720px) {
+  .app-header {
+    flex-direction: column;
+  }
+
+  .app-title {
+    font-size: 2.4rem;
+  }
+
+  .header-actions {
+    justify-content: flex-start;
+  }
 }
