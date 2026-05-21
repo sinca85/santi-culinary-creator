@@ -1,0 +1,164 @@
+{
+  "_id": "",
+  // Mongo lo genera solo.
+  // No completar manualmente.
+
+  "id": "",
+  // ID único legible
+  // ejemplos:
+  // base-brownie-clasico
+  // project-bombones-naranja
+  // published-cheesecake-frutos-rojos
+
+  "type": "",
+  // base
+  // project
+  // published
+
+  "title": "",
+  // Nombre visible
+
+  "status": "",
+  // idea
+  // prueba
+  // aprobado
+  // publicado
+
+  "category": "",
+  // bases
+  // bombones
+  // tartas
+  // rellenos
+  // chocolates
+  // alfajores
+  // etc
+
+  "priority": "",
+  // baja
+  // media
+  // alta
+
+  "goal": "",
+  // Objetivo:
+  // "Base reutilizable"
+  // "Producto para reels"
+  // etc
+
+  "contentPending": false,
+  // true:
+  // falta sacar fotos / grabar / publicar
+  //
+  // false:
+  // ya está producido
+
+  "coverImage": "",
+  // Imagen principal para cards
+
+  "baseIds": [
+  ],
+  // IDs de bases asociadas
+  //
+  // ejemplo:
+  // [
+  //   "base-brownie",
+  //   "base-ganache"
+  // ]
+
+  "published": {
+
+    "instagram": {
+
+      "enabled": false,
+      // publicado sí/no
+
+      "url": "",
+      // link al reel/post
+
+      "views": 0
+      // opcional futuro
+    },
+
+    "web": {
+
+      "enabled": false,
+
+      "url": "",
+
+      "views": 0
+    },
+
+    "youtube": {
+
+      "enabled": false,
+
+      "url": "",
+
+      "views": 0
+    }
+
+  },
+
+  "recipe": {
+
+    "ingredients": [
+
+      // formato oficial:
+      // "Chocolate, 100 g"
+      // "Huevos, 3 unidades"
+
+    ],
+
+    "steps": [
+
+      // pasos completos
+
+    ],
+
+    "result": ""
+    // descripción final
+  },
+
+  "tasks": [
+
+    {
+      "text": "",
+      // tarea
+
+      "done": false,
+
+      "type": ""
+      // compra
+      // contenido
+      // prueba
+      // produccion
+    }
+
+  ],
+
+  "notes": [
+
+    // observaciones
+    // rendimiento
+    // tips
+    // errores
+
+  ],
+
+  "links": {
+
+    "youtube": "",
+
+    "instagram": "",
+
+    "tiktok": "",
+
+    "source": ""
+    // fuente receta/video
+  },
+
+  "createdAt": "",
+  // ISO automático
+
+  "updatedAt": ""
+  // ISO automático
+}
