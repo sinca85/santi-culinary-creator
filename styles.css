@@ -465,3 +465,27 @@ body {
   color:#fff !important;
   line-height:1 !important;
 }
+/* Modal confirm eliminar */
+
+.ant-modal-confirm-content,
+.ant-modal-confirm-title,
+.ant-modal-confirm-body {
+  color: var(--text) !important;
+}
+
+.ant-modal-confirm-content {
+  color: #f7efe3 !important;
+}
+
+.ant-modal-confirm-title {
+  color: #fff !important;
+}
+
+.ant-modal-confirm .anticon {
+  color: #d8a255 !important;
+}
+
+/* opcional: texto más suave */
+.ant-modal-confirm-content {
+  opacity: .9;
+}
