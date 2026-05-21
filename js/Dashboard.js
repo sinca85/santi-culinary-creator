@@ -111,75 +111,123 @@ window.Dashboard = function Dashboard() {
       selectedProjectId
     ]);
 
-    async function toggleTask(projectId,taskIndex){
+  async function toggleTask(projectId,taskIndex){
 
     const currentProject =
-        projects.find(
+      projects.find(
         project =>
-            getProjectId(project) === projectId
-        );
+          getProjectId(project) === projectId
+      );
 
     if(!currentProject) return;
 
     const updatedTasks =
-        (currentProject.tasks || [])
+      (currentProject.tasks || [])
         .map((task,index) =>
-            index === taskIndex
+          index === taskIndex
             ? {
                 ...task,
                 done: !task.done
-                }
+              }
             : task
         );
 
     setProjects(prev =>
-        prev.map(project => {
+      prev.map(project => {
 
         if(getProjectId(project) !== projectId){
-            return project;
+          return project;
         }
 
         return {
-            ...project,
-            tasks: updatedTasks
+          ...project,
+          tasks: updatedTasks
         };
 
-        })
+      })
     );
 
     try {
 
-        await updateProjectTasks(
+      await updateProjectTasks(
         projectId,
         updatedTasks
-        );
+      );
 
-        message.success("Tarea actualizada");
+      message.success("Tarea actualizada");
 
     } catch(err){
 
-        console.error(err);
+      console.error(err);
 
-        message.error(
+      message.error(
         err.message ||
         "No se pudo guardar la tarea"
-        );
+      );
 
-        setProjects(prev =>
+      setProjects(prev =>
         prev.map(project => {
 
-            if(getProjectId(project) !== projectId){
+          if(getProjectId(project) !== projectId){
             return project;
-            }
+          }
 
-            return currentProject;
+          return currentProject;
 
         })
-        );
+      );
 
     }
 
-    }
+  }
+
+  function isPublished(project){
+
+    const published =
+      project.published || {};
+
+    return Object.values(published)
+      .some(item =>
+        item &&
+        item.published === true
+      );
+
+  }
+
+  function renderProjectsList(projectList,emptyText){
+
+    return projectList.length ? (
+      <Row gutter={[16,16]}>
+        {projectList.map(project => (
+          <Col
+            xs={24}
+            md={12}
+            xl={8}
+            key={getProjectId(project)}
+          >
+            <ProjectCard
+              project={project}
+              onOpen={project =>
+                setSelectedProjectId(
+                  getProjectId(project)
+                )
+              }
+              onToggleTask={toggleTask}
+            />
+          </Col>
+        ))}
+      </Row>
+    ) : (
+      <Empty
+        description={
+          loadingProjects
+            ? "Cargando proyectos..."
+            : emptyText
+        }
+      />
+    );
+
+  }
 
   const filteredProjects =
     useMemo(() => {
@@ -195,9 +243,12 @@ window.Dashboard = function Dashboard() {
             project.goal,
             project.category,
             project.status,
+            project.type,
             ...(project.notes || []),
             ...(project.tasks || [])
-              .map(task => task.text)
+              .map(task => task.text),
+            ...Object.values(project.published || {})
+              .map(item => item?.url || "")
           ].join(" "));
 
         if(search && !searchable.includes(search)){
@@ -229,6 +280,23 @@ window.Dashboard = function Dashboard() {
       filters
     ]);
 
+  const baseProjects =
+    filteredProjects.filter(
+      project => project.type === "base"
+    );
+
+  const composedProjects =
+    filteredProjects.filter(
+      project =>
+        project.type === "project" ||
+        !project.type
+    );
+
+  const publishedProjects =
+    filteredProjects.filter(
+      project => isPublished(project)
+    );
+
   const highPriority =
     projects.filter(
       project => project.priority === "alta"
@@ -241,21 +309,6 @@ window.Dashboard = function Dashboard() {
     projects.filter(
       project => project.contentPending
     ).length;
-
-  const purchaseProjects =
-    projects.filter(project =>
-      (project.tasks || [])
-        .some(
-          task =>
-            task.type === "compra" &&
-            !task.done
-        )
-    );
-
-  const contentProjects =
-    projects.filter(
-      project => project.contentPending
-    );
 
   return (
     <App>
@@ -308,7 +361,7 @@ window.Dashboard = function Dashboard() {
           </div>
         </header>
 
-        <Row gutter={[16,16]}>
+        <Row gutter={[12,8]}>
           <Col xs={12} md={6}>
             <Card className="glass-card summary-card">
               <Statistic
@@ -434,125 +487,68 @@ window.Dashboard = function Dashboard() {
               key: "todos",
               label: "Todos",
               children:
-                filteredProjects.length ? (
-                  <Row gutter={[16,16]}>
-                    {filteredProjects.map(project => (
-                      <Col
-                        xs={24}
-                        md={12}
-                        xl={8}
-                        key={getProjectId(project)}
-                      >
-                        <ProjectCard
-                          project={project}
-                          onOpen={project =>
-                            setSelectedProjectId(
-                              getProjectId(project)
-                            )
-                          }
-                          onToggleTask={toggleTask}
-                        />
-                      </Col>
-                    ))}
-                  </Row>
-                ) : (
-                  <Empty
-                    description={
-                      loadingProjects
-                        ? "Cargando proyectos..."
-                        : "No hay proyectos con estos filtros."
-                    }
-                  />
+                renderProjectsList(
+                  filteredProjects,
+                  "No hay proyectos con estos filtros."
                 )
             },
             {
-              key: "compras",
-              label: "Compras pendientes",
+              key: "bases",
+              label: "Bases",
               children:
-                purchaseProjects.length ? (
-                  <Row gutter={[16,16]}>
-                    {purchaseProjects.map(project => (
-                      <Col
-                        xs={24}
-                        md={12}
-                        xl={8}
-                        key={getProjectId(project)}
-                      >
-                        <ProjectCard
-                          project={project}
-                          onOpen={project =>
-                            setSelectedProjectId(
-                              getProjectId(project)
-                            )
-                          }
-                          onToggleTask={toggleTask}
-                        />
-                      </Col>
-                    ))}
-                  </Row>
-                ) : (
-                  <Empty description="No hay compras pendientes." />
+                renderProjectsList(
+                  baseProjects,
+                  "No hay bases cargadas."
                 )
             },
             {
-              key: "contenido",
-              label: "Contenido redes",
+              key: "proyectos",
+              label: "Proyectos",
               children:
-                contentProjects.length ? (
-                  <Row gutter={[16,16]}>
-                    {contentProjects.map(project => (
-                      <Col
-                        xs={24}
-                        md={12}
-                        xl={8}
-                        key={getProjectId(project)}
-                      >
-                        <ProjectCard
-                          project={project}
-                          onOpen={project =>
-                            setSelectedProjectId(
-                              getProjectId(project)
-                            )
-                          }
-                          onToggleTask={toggleTask}
-                        />
-                      </Col>
-                    ))}
-                  </Row>
-                ) : (
-                  <Empty description="No hay contenido pendiente." />
+                renderProjectsList(
+                  composedProjects,
+                  "No hay proyectos cargados."
+                )
+            },
+            {
+              key: "publicados",
+              label: "Publicados",
+              children:
+                renderProjectsList(
+                  publishedProjects,
+                  "No hay contenidos publicados."
                 )
             }
           ]}
         />
 
         <DetailDrawer
-            project={selectedProject}
-            onClose={() => setSelectedProjectId(null)}
-            onToggleTask={toggleTask}
-            onProjectUpdated={updatedProject => {
-                setProjects(prev =>
-                prev.map(project =>
-                    getProjectId(project) === getProjectId(updatedProject)
-                    ? normalizeProject(updatedProject)
-                    : project
-                )
-                );
-            }}
-            />
+          project={selectedProject}
+          onClose={() => setSelectedProjectId(null)}
+          onToggleTask={toggleTask}
+          onProjectUpdated={updatedProject => {
+            setProjects(prev =>
+              prev.map(project =>
+                getProjectId(project) === getProjectId(updatedProject)
+                  ? normalizeProject(updatedProject)
+                  : project
+              )
+            );
+          }}
+        />
 
         <NewProjectModal
-            open={generatorOpen}
-            onCancel={() => setGeneratorOpen(false)}
-            onProjectCreated={project => {
-                setProjects(prev => [
-                normalizeProject(project),
-                ...prev
-                ]);
+          open={generatorOpen}
+          onCancel={() => setGeneratorOpen(false)}
+          onProjectCreated={project => {
+            setProjects(prev => [
+              normalizeProject(project),
+              ...prev
+            ]);
 
-                setGeneratorOpen(false);
-            }}
-            />
+            setGeneratorOpen(false);
+          }}
+        />
       </div>
     </App>
   );
