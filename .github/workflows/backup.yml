@@ -1,59 +1,42 @@
 name: Mongo Backup
 
 on:
-
   schedule:
     - cron: "0 3 * * 0"
     - cron: "0 3 * * 3"
-
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-
   backup:
+    runs-on: ubuntu-latest
 
-    runs-on:
-      ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
+      - uses: actions/checkout@v4
 
-      - uses:
-          actions/checkout@v4
-
-      - uses:
-          actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
-      - run:
-          npm install
+      - run: npm install
 
-      - run:
-          node scripts/backup-mongo.js
+      - run: node scripts/backup-mongo.js
         env:
-          MONGO_URI:
-            ${{ secrets.MONGO_URI }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MONGO_DB: ${{ secrets.MONGO_DB }}
 
-          MONGO_DB:
-            ${{ secrets.MONGO_DB }}
-
-      - name:
-          Commit backup
-
+      - name: Commit backup
         run: |
-
-          git config \
-          user.name \
-          "github-actions"
-
-          git config \
-          user.email \
-          "actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
 
           git add backups/
 
-          git commit \
-          -m "Automatic Mongo backup" \
-          || echo "No changes"
+          git commit -m "Automatic Mongo backup" || echo "No changes to commit"
 
           git push
