@@ -201,8 +201,10 @@ window.Dashboard = function Dashboard() {
         {projectList.map(project => (
           <Col
             xs={24}
-            md={12}
-            xl={8}
+            sm={12}
+            md={8}
+            lg={6}
+            xl={6}
             key={getProjectId(project)}
           >
             <ProjectCard
