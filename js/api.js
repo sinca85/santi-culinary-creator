@@ -1,5 +1,4 @@
-window.API_BASE_URL =
-  "https://santi-culinary-creator.vercel.app";
+window.API_BASE_URL = "";
 
 window.fetchProjects =
 async function(){
