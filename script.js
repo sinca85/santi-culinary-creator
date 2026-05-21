@@ -3,5 +3,5 @@ ReactDOM
     document.getElementById("root")
   )
   .render(
-    <Dashboard />
-  );
+    <AuthGate />
+);
