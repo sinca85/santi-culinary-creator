@@ -164,7 +164,7 @@ body {
   min-height: 260px !important;
   background-image:
     linear-gradient(
-      rgba(0,0,0,.62),
+      rgba(0,0,0,.20),
       rgba(0,0,0,.86)
     ),
     var(--cover-image) !important;
