@@ -428,3 +428,27 @@ body {
     justify-content: flex-start;
   }
 }
+.summary-card .ant-card-body {
+  padding: 10px 14px !important;
+}
+
+.summary-card .ant-statistic {
+  display:flex !important;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.summary-card .ant-statistic-title {
+  margin:0 !important;
+  font-size:13px !important;
+  color:var(--muted) !important;
+}
+
+.summary-card .ant-statistic-content {
+  margin:0 !important;
+  font-size:22px !important;
+  font-weight:700 !important;
+  color:#fff !important;
+  line-height:1 !important;
+}
