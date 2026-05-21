@@ -1,0 +1,328 @@
+[
+  {
+    "_id": "6a0e1b0a95d24135ad366453",
+    "id": "bombones-naranja-confitada",
+    "title": "Bombones de naranja confitada",
+    "status": "idea",
+    "category": "bombones",
+    "priority": "alta",
+    "goal": "Crear bombón con naranja confitada y chocolate, apto para fotos y posible reel.",
+    "contentPending": true,
+    "dateTarget": "",
+    "coverImage": "",
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "tiktok": "",
+      "photos": ""
+    },
+    "tasks": [
+      {
+        "text": "Comprar glucosa",
+        "done": true,
+        "type": "compra"
+      },
+      {
+        "text": "Comprar chocolate blanco",
+        "done": true,
+        "type": "compra"
+      },
+      {
+        "text": "Probar naranja con doble hervor",
+        "done": true,
+        "type": "produccion"
+      },
+      {
+        "text": "Definir relleno",
+        "done": true,
+        "type": "produccion"
+      },
+      {
+        "text": "Sacar fotos",
+        "done": true,
+        "type": "contenido"
+      },
+      {
+        "text": "Grabar reel",
+        "done": true,
+        "type": "contenido"
+      }
+    ],
+    "notes": [
+      "Revisar amargor de la piel.",
+      "Evaluar cobertura con chocolate semiamargo."
+    ],
+    "recipe": {
+      "ingredients": [],
+      "steps": [],
+      "result": "Sin probar"
+    },
+    "updatedAt": "2026-05-20T22:15:56.359Z"
+  },
+  {
+    "_id": "6a0e1b3395d24135ad366456",
+    "id": "cheesecake-frutos-rojos",
+    "title": "Cheesecake clásica con frutos rojos",
+    "status": "idea",
+    "category": "tartas",
+    "priority": "media",
+    "goal": "Crear cheesecake estable para fotos, receta repetible y posible reel.",
+    "contentPending": true,
+    "dateTarget": "",
+    "coverImage": "",
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "tiktok": "",
+      "photos": ""
+    },
+    "tasks": [
+      {
+        "text": "Comprar queso crema",
+        "done": false,
+        "type": "compra"
+      },
+      {
+        "text": "Comprar crema de leche",
+        "done": true,
+        "type": "compra"
+      },
+      {
+        "text": "Comprar galletitas para base",
+        "done": true,
+        "type": "compra"
+      },
+      {
+        "text": "Comprar manteca",
+        "done": true,
+        "type": "compra"
+      },
+      {
+        "text": "Definir cobertura",
+        "done": true,
+        "type": "produccion"
+      },
+      {
+        "text": "Hacer primera prueba",
+        "done": true,
+        "type": "produccion"
+      },
+      {
+        "text": "Sacar fotos",
+        "done": false,
+        "type": "contenido"
+      },
+      {
+        "text": "Grabar reel",
+        "done": false,
+        "type": "contenido"
+      }
+    ],
+    "notes": [
+      "Probar versión económica11111.",
+      "Evaluar gelatina para mayor estabilidad.",
+      "Revisar cobertura brillante vs fruta fresca."
+    ],
+    "recipe": {
+      "ingredients": [
+        "Queso crema",
+        "Crema de leche",
+        "Galletitas para base",
+        "Manteca",
+        "Frutos rojos"
+      ],
+      "steps": [],
+      "result": "Sin probar"
+    },
+    "updatedAt": "2026-05-20T22:14:10.278Z"
+  },
+  {
+    "_id": "6a0e2f7f21cf10dc1188d321",
+    "id": "alfajores-maracuya-chocolate",
+    "title": "Alfajores de maracuyá y chocolate blanco",
+    "status": "investigacion",
+    "category": "chocolateria",
+    "priority": "alta",
+    "goal": "Desarrollar alfajor premium para fotos, reel y posible producto fijo.",
+    "contentPending": true,
+    "dateTarget": "2026-05-30",
+    "coverImage": "",
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "tiktok": "",
+      "photos": ""
+    },
+    "tasks": [
+      {
+        "text": "Comprar maracuyá",
+        "done": false,
+        "type": "compra"
+      },
+      {
+        "text": "Comprar chocolate blanco",
+        "done": false,
+        "type": "compra"
+      },
+      {
+        "text": "Probar relleno ácido",
+        "done": false,
+        "type": "produccion"
+      },
+      {
+        "text": "Diseñar cobertura",
+        "done": false,
+        "type": "produccion"
+      },
+      {
+        "text": "Sacar fotos finales",
+        "done": false,
+        "type": "contenido"
+      },
+      {
+        "text": "Grabar reel armado",
+        "done": false,
+        "type": "contenido"
+      }
+    ],
+    "notes": [
+      "Buscar equilibrio ácido/dulce.",
+      "Evaluar cobertura blanca vs semiamarga.",
+      "Pensar packaging."
+    ],
+    "recipe": {
+      "ingredients": [
+        "Tapas alfajor",
+        "Chocolate blanco",
+        "Pulpa maracuyá",
+        "Crema",
+        "Glucosa"
+      ],
+      "steps": [
+        "Preparar relleno",
+        "Dejar madurar",
+        "Armar",
+        "Bañar"
+      ],
+      "result": "Pendiente"
+    },
+    "createdAt": "2026-05-20T22:02:39.913Z",
+    "updatedAt": "2026-05-20T22:02:39.913Z"
+  },
+  {
+    "_id": "6a0e33d8a931c403a490d273",
+    "id": "ganache-pera-chocolate-blanco",
+    "title": "Ganache de pera y chocolate blanco",
+    "status": "en-prueba",
+    "category": "bombones",
+    "priority": "alta",
+    "goal": "Crear relleno estable para bombones con sabor marcado a pera.",
+    "contentPending": true,
+    "tasks": [
+      {
+        "text": "Comprar peras",
+        "done": true,
+        "type": "compra"
+      },
+      {
+        "text": "Reducir puré",
+        "done": false,
+        "type": "produccion"
+      },
+      {
+        "text": "Probar textura después de 24 hs",
+        "done": false,
+        "type": "produccion"
+      }
+    ],
+    "notes": [
+      "La pera pierde sabor si se cocina demasiado.",
+      "Evaluar agregar ácido cítrico."
+    ],
+    "recipe": {
+      "ingredients": [
+        "100 g puré de pera",
+        "90 g azúcar",
+        "15 g glucosa",
+        "100 g chocolate blanco",
+        "10 g manteca",
+        "1 pizca sal"
+      ],
+      "steps": [
+        "Pelar y procesar las peras hasta obtener 100 g de puré.",
+        "Agregar azúcar y glucosa al puré.",
+        "Cocinar a fuego medio durante 8–10 minutos removiendo constantemente hasta reducir y espesar.",
+        "Retirar del fuego cuando alcance textura similar a una mermelada ligera.",
+        "Esperar hasta 50°C aproximadamente.",
+        "Agregar el chocolate blanco picado y mezclar hasta fundir.",
+        "Incorporar manteca y pizca de sal.",
+        "Emulsionar con espátula o mixer.",
+        "Reposar 12 horas antes de usar en bombones.",
+        "Evaluar firmeza a temperatura ambiente."
+      ],
+      "result": "Textura sedosa, sabor suave. Necesita más intensidad de fruta."
+    },
+    "createdAt": "2026-05-20T22:21:12.682Z",
+    "updatedAt": "2026-05-20T22:21:43.546Z"
+  },
+  {
+    "_id": "6a0e37b1fcefa93ef291aa4a",
+    "id": "flan-naranja-sin-huevo",
+    "title": "Flan de naranja sin huevo",
+    "status": "investigacion",
+    "category": "tartas",
+    "priority": "media",
+    "goal": "Probar flan de naranja con maizena, sin huevo, usando caramelo clásico.",
+    "contentPending": true,
+    "coverImage": "https://img.youtube.com/vi/nd3yfsAHpCw/maxresdefault.jpg",
+    "links": {
+      "youtube": "https://www.youtube.com/watch?v=nd3yfsAHpCw",
+      "instagram": "",
+      "tiktok": "",
+      "photos": ""
+    },
+    "tasks": [
+      {
+        "text": "Ver video completo",
+        "done": false,
+        "type": "investigacion"
+      },
+      {
+        "text": "Probar textura del flan",
+        "done": false,
+        "type": "produccion"
+      },
+      {
+        "text": "Sacar fotos del corte",
+        "done": false,
+        "type": "contenido"
+      }
+    ],
+    "notes": [
+      "Fuente: YouTube.",
+      "Receta con zumo de naranja y maizena, sin huevo."
+    ],
+    "recipe": {
+      "ingredients": [
+        "Azúcar para caramelo, 120 g",
+        "Agua para caramelo, 40 ml",
+        "Zumo de naranja recién exprimido y colado, 1 L",
+        "Maizena, 100 g",
+        "Azúcar para flan, 135 g"
+      ],
+      "steps": [
+        "Preparar el caramelo con azúcar y agua.",
+        "Volcar el caramelo en el molde y distribuirlo bien.",
+        "Mezclar el zumo de naranja colado con la maizena hasta disolver.",
+        "Agregar el azúcar y mezclar.",
+        "Cocinar la mezcla removiendo hasta que espese.",
+        "Verter la preparación sobre el molde acaramelado.",
+        "Dejar enfriar y llevar a heladera hasta que tome cuerpo.",
+        "Desmoldar y evaluar textura."
+      ],
+      "result": "Sin probar"
+    },
+    "createdAt": "2026-05-20T22:37:37.993Z",
+    "updatedAt": "2026-05-20T22:37:37.993Z"
+  }
+]
