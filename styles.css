@@ -77,24 +77,37 @@ body {
 }
 
 .summary-card {
-  min-height: 68px !important;
-  border-radius: 18px !important;
+  min-height: auto !important;
+  height: auto !important;
+  border-radius: 16px !important;
 }
 
 .summary-card .ant-card-body {
-  padding: 10px 14px !important;
+  padding: 8px 14px !important;
+  min-height: 0 !important;
+}
+
+.summary-card .ant-statistic {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  min-height: 0 !important;
 }
 
 .summary-card .ant-statistic-title {
-  color: var(--muted) !important;
+  margin: 0 !important;
   font-size: 13px !important;
-  margin-bottom: 2px !important;
+  line-height: 1 !important;
+  color: var(--muted) !important;
 }
 
 .summary-card .ant-statistic-content {
-  color: var(--text) !important;
-  font-size: 18px !important;
-  line-height: 1.1 !important;
+  margin: 0 !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+  color: #fff !important;
 }
 
 .controls-card {
