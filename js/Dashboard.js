@@ -523,18 +523,25 @@ window.Dashboard = function Dashboard() {
         />
 
         <DetailDrawer
-          project={selectedProject}
-          onClose={() => setSelectedProjectId(null)}
-          onToggleTask={toggleTask}
-          onProjectUpdated={updatedProject => {
+        project={selectedProject}
+        onClose={() => setSelectedProjectId(null)}
+        onToggleTask={toggleTask}
+        onProjectUpdated={updatedProject => {
             setProjects(prev =>
-              prev.map(project =>
+            prev.map(project =>
                 getProjectId(project) === getProjectId(updatedProject)
-                  ? normalizeProject(updatedProject)
-                  : project
-              )
+                ? normalizeProject(updatedProject)
+                : project
+            )
             );
-          }}
+        }}
+        onProjectDeleted={deletedId => {
+            setProjects(prev =>
+            prev.filter(project =>
+                getProjectId(project) !== deletedId
+            )
+            );
+        }}
         />
 
         <NewProjectModal

@@ -2,13 +2,15 @@ window.DetailDrawer = function DetailDrawer({
   project,
   onClose,
   onToggleTask,
-  onProjectUpdated
+  onProjectUpdated,
+  onProjectDeleted
 }) {
   const {
     Button,
     Checkbox,
     Drawer,
     Input,
+    Modal,
     Space,
     Tag,
     message
@@ -30,6 +32,9 @@ window.DetailDrawer = function DetailDrawer({
     useState("");
 
   const [saving,setSaving] =
+    useState(false);
+
+  const [deleting,setDeleting] =
     useState(false);
 
   useEffect(() => {
@@ -95,6 +100,58 @@ window.DetailDrawer = function DetailDrawer({
 
   }
 
+  function confirmDelete(){
+
+    Modal.confirm({
+      title: "Eliminar elemento",
+      content: `¿Seguro que querés eliminar "${project.title}"? Esta acción no se puede deshacer.`,
+      okText: "Eliminar",
+      cancelText: "Cancelar",
+      okButtonProps: {
+        danger: true
+      },
+
+      async onOk(){
+
+        try {
+
+          setDeleting(true);
+
+          const projectId =
+            getProjectId(project);
+
+          await deleteProject(projectId);
+
+          message.success(
+            "Elemento eliminado"
+          );
+
+          if(onProjectDeleted){
+            onProjectDeleted(projectId);
+          }
+
+          onClose();
+
+        } catch(err){
+
+          console.error(err);
+
+          message.error(
+            err.message ||
+            "No se pudo eliminar"
+          );
+
+        } finally {
+
+          setDeleting(false);
+
+        }
+
+      }
+    });
+
+  }
+
   return (
     <Drawer
       className="detail-drawer"
@@ -120,6 +177,14 @@ window.DetailDrawer = function DetailDrawer({
             }}
           >
             Copiar JSON
+          </Button>
+
+          <Button
+            danger
+            loading={deleting}
+            onClick={confirmDelete}
+          >
+            Eliminar
           </Button>
         </Space>
       }
@@ -176,43 +241,43 @@ window.DetailDrawer = function DetailDrawer({
 
           {project.recipe &&
             (
-                (project.recipe.ingredients || []).length ||
-                (project.recipe.steps || []).length ||
-                project.recipe.result
+              (project.recipe.ingredients || []).length ||
+              (project.recipe.steps || []).length ||
+              project.recipe.result
             ) && (
-                <div className="detail-block">
+              <div className="detail-block">
                 <h3>Receta</h3>
 
                 {(project.recipe.ingredients || []).length > 0 && (
-                    <>
+                  <>
                     <h4>Ingredientes</h4>
                     <ul>
-                        {project.recipe.ingredients.map((ingredient,index)=>(
+                      {project.recipe.ingredients.map((ingredient,index)=>(
                         <li key={index}>{ingredient}</li>
-                        ))}
+                      ))}
                     </ul>
-                    </>
+                  </>
                 )}
 
                 {(project.recipe.steps || []).length > 0 && (
-                    <>
+                  <>
                     <h4>Pasos</h4>
                     <ol>
-                        {project.recipe.steps.map((step,index)=>(
+                      {project.recipe.steps.map((step,index)=>(
                         <li key={index}>{step}</li>
-                        ))}
+                      ))}
                     </ol>
-                    </>
+                  </>
                 )}
 
                 {project.recipe.result && (
-                    <p>
+                  <p>
                     <strong>Resultado:</strong> {project.recipe.result}
-                    </p>
+                  </p>
                 )}
-                </div>
+              </div>
             )
-            }
+          }
 
           <div className="detail-block">
             <h3>Notas</h3>

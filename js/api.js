@@ -221,3 +221,36 @@ async function(){
   return response.json();
 
 };
+
+window.deleteProject =
+async function(id){
+
+  const response =
+    await fetch(
+      `${API_BASE_URL}/api/projects`,
+      {
+        method:"DELETE",
+        credentials:"include",
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
+        body:JSON.stringify({
+          id
+        })
+      }
+    );
+
+  if(!response.ok){
+    const error =
+      await response
+      .json()
+      .catch(()=>({}));
+
+    throw new Error(
+      error.error ||
+      "No se pudo eliminar"
+    );
+  }
+  return response.json();
+};

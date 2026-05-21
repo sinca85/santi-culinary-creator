@@ -132,6 +132,35 @@ export default async function handler(req, res) {
       });
     }
 
+    if (req.method === "DELETE") {
+      const { id } = req.body || {};
+
+      if (!id) {
+        return res.status(400).json({
+          error: "Falta campo: id"
+        });
+      }
+
+      const result = await collection.deleteOne({
+        $or: [
+          { id },
+          { _id: id }
+        ]
+      });
+
+      if (result.deletedCount === 0) {
+        return res.status(404).json({
+          error: "Proyecto no encontrado",
+          id
+        });
+      }
+
+      return res.status(200).json({
+        ok: true,
+        deletedCount: result.deletedCount
+      });
+    }
+
     return res.status(405).json({
       error: "Método no permitido"
     });
