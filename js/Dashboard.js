@@ -7,6 +7,7 @@ window.Dashboard = function Dashboard() {
     Col,
     Empty,
     Input,
+    Modal,
     Row,
     Select,
     Statistic,
@@ -17,7 +18,8 @@ window.Dashboard = function Dashboard() {
   const {
     PlusOutlined,
     GithubOutlined,
-    LinkOutlined
+    LinkOutlined,
+    VideoCameraOutlined
   } = icons;
 
   const {
@@ -36,6 +38,9 @@ window.Dashboard = function Dashboard() {
     useState(null);
 
   const [generatorOpen,setGeneratorOpen] =
+    useState(false);
+
+  const [reelsModelOpen,setReelsModelOpen] =
     useState(false);
 
   const [loadingProjects,setLoadingProjects] =
@@ -317,9 +322,20 @@ window.Dashboard = function Dashboard() {
       <div className="app-shell">
         <header className="app-header">
           <div>
-            <p className="eyebrow">
-              Culinary dashboard
-            </p>
+            <div className="eyebrow-row">
+              <p className="eyebrow">
+                Culinary dashboard
+              </p>
+
+              <Button
+                size="small"
+                className="mini-header-button"
+                icon={<VideoCameraOutlined />}
+                onClick={() => setReelsModelOpen(true)}
+              >
+                Modelo reels
+              </Button>
+            </div>
 
             <h1 className="app-title">
               {
@@ -525,25 +541,25 @@ window.Dashboard = function Dashboard() {
         />
 
         <DetailDrawer
-        project={selectedProject}
-        onClose={() => setSelectedProjectId(null)}
-        onToggleTask={toggleTask}
-        onProjectUpdated={updatedProject => {
+          project={selectedProject}
+          onClose={() => setSelectedProjectId(null)}
+          onToggleTask={toggleTask}
+          onProjectUpdated={updatedProject => {
             setProjects(prev =>
-            prev.map(project =>
+              prev.map(project =>
                 getProjectId(project) === getProjectId(updatedProject)
-                ? normalizeProject(updatedProject)
-                : project
-            )
+                  ? normalizeProject(updatedProject)
+                  : project
+              )
             );
-        }}
-        onProjectDeleted={deletedId => {
+          }}
+          onProjectDeleted={deletedId => {
             setProjects(prev =>
-            prev.filter(project =>
+              prev.filter(project =>
                 getProjectId(project) !== deletedId
-            )
+              )
             );
-        }}
+          }}
         />
 
         <NewProjectModal
@@ -558,6 +574,29 @@ window.Dashboard = function Dashboard() {
             setGeneratorOpen(false);
           }}
         />
+
+        <Modal
+          title="Modelo de producción para reels"
+          open={reelsModelOpen}
+          onCancel={() => setReelsModelOpen(false)}
+          footer={null}
+        >
+          <div className="reels-model-box">
+            <p>Proceso completo receta (20-40 min grabación)</p>
+            <p className="reels-arrow">↓</p>
+            <p>Video YouTube: 8–12 min</p>
+            <p className="reels-arrow">↓</p>
+            <p>De ahí salen:</p>
+
+            <ul>
+              <li>1 teaser (30s)</li>
+              <li>3 Shorts</li>
+              <li>2 Reels</li>
+              <li>Stories</li>
+              <li>TikTok</li>
+            </ul>
+          </div>
+        </Modal>
       </div>
     </App>
   );
