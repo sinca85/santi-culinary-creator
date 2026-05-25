@@ -582,20 +582,19 @@ window.Dashboard = function Dashboard() {
           footer={null}
         >
           <div className="reels-model-box">
-            <p>Proceso completo receta (20-40 min grabación)</p>
-            <p className="reels-arrow">↓</p>
-            <p>Video YouTube: 8–12 min</p>
-            <p className="reels-arrow">↓</p>
-            <p>De ahí salen:</p>
-
-            <ul>
-              <li>1 teaser (30s)</li>
-              <li>3 Shorts</li>
-              <li>2 Reels</li>
-              <li>Stories</li>
-              <li>TikTok</li>
-            </ul>
-          </div>
+          <p>Chocolate, recipes, mistakes and process.</p>
+          <p className="reels-arrow">↓</p>
+          <p>Trying things. Making mistakes. Learning.</p>
+          <p className="reels-arrow">↓</p>
+          <ul>
+            <li>Instagram → @santivillabrille.creator</li>
+            <li>TikTok → @santivillabrille.creator</li>
+            <li>YouTube → @santivillabrille.creator</li>
+          </ul>
+          <p className="reels-arrow">↓</p>
+          <p><strong>Santi Villa Abrille</strong></p>
+          <p>Culinary Creator</p>
+        </div>
         </Modal>
       </div>
     </App>
