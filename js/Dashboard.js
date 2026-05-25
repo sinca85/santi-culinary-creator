@@ -187,16 +187,19 @@ window.Dashboard = function Dashboard() {
   }
 
   function isPublished(project){
-
+    if(project.type === "published"){
+      return true;
+    }
+    if(project.status === "publicado"){
+      return true;
+    }
     const published =
       project.published || {};
-
     return Object.values(published)
       .some(item =>
         item &&
-        item.published === true
+        item.enabled === true
       );
-
   }
 
   function renderProjectsList(projectList,emptyText){
