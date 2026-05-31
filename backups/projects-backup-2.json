@@ -388,5 +388,172 @@
     },
     "createdAt": "2026-05-21T16:54:26.203Z",
     "updatedAt": "2026-05-21T16:54:26.203Z"
+  },
+  {
+    "_id": "6a14dcf512acf0e52c22035b",
+    "id": "published-bombones-naranja-confitada",
+    "type": "published",
+    "title": "Bombones de naranja confitada",
+    "status": "publicado",
+    "category": "bombones",
+    "priority": "alta",
+    "goal": "Bombones con relleno cítrico de naranja y cobertura de chocolate, producidos para YouTube y contenido futuro.",
+    "contentPending": false,
+    "coverImage": "https://img.youtube.com/vi/sgRoCUrSPjw/maxresdefault.jpg",
+    "baseIds": [
+      "base-relleno-naranja"
+    ],
+    "published": {
+      "instagram": {
+        "enabled": true,
+        "url": "https://www.instagram.com/reel/DYxmbsICr9v/",
+        "views": 0
+      },
+      "web": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      },
+      "youtube": {
+        "enabled": true,
+        "url": "https://www.youtube.com/watch?v=sgRoCUrSPjw",
+        "views": 0
+      },
+      "youtubeShort": {
+        "enabled": true,
+        "url": "https://www.youtube.com/shorts/vnsf1V1d3TA",
+        "views": 0
+      },
+      "tiktok": {
+        "enabled": true,
+        "url": "https://www.tiktok.com/@santivillaabrille/video/7643926536122273032",
+        "views": 0
+      }
+    },
+    "recipe": {
+      "ingredients": [
+        "Chocolate cobertura, cantidad necesaria",
+        "Base relleno naranja",
+        "Naranja confitada"
+      ],
+      "steps": [
+        "Preparar relleno cítrico de naranja.",
+        "Templar chocolate.",
+        "Moldear capa inicial de chocolate.",
+        "Agregar relleno.",
+        "Cerrar bombones.",
+        "Dejar cristalizar.",
+        "Decorar con naranja confitada.",
+        "Grabar y fotografiar resultado."
+      ],
+      "result": "Bombones rellenos con sabor marcado a naranja y cobertura de chocolate"
+    },
+    "tasks": [
+      {
+        "text": "Subir reel Instagram",
+        "done": true,
+        "type": "contenido"
+      },
+      {
+        "text": "Crear ficha web",
+        "done": false,
+        "type": "produccion"
+      }
+    ],
+    "notes": [
+      "Video largo publicado en YouTube.",
+      "Relacionado con base-relleno-naranja.",
+      "Puede reutilizarse para alfajores o bombones blancos.",
+      "Primer contenido publicado dentro del proyecto Culinary Creator.",
+      "Publicado además en Shorts, TikTok e Instagram Reel."
+    ],
+    "links": {
+      "youtube": "https://www.youtube.com/watch?v=sgRoCUrSPjw",
+      "youtubeShort": "https://www.youtube.com/shorts/vnsf1V1d3TA",
+      "instagram": "https://www.instagram.com/reel/DYxmbsICr9v/",
+      "tiktok": "https://www.tiktok.com/@santivillaabrille/video/7643926536122273032",
+      "source": ""
+    },
+    "createdAt": "2026-05-25T23:36:21.121Z",
+    "updatedAt": "2026-05-25T23:36:51.327Z"
+  },
+  {
+    "_id": "6a14e434542ad45dc08eca2b",
+    "id": "project-imperial-darkness",
+    "type": "project",
+    "title": "Imperial Darkness",
+    "status": "idea",
+    "category": "bombones",
+    "priority": "alta",
+    "goal": "Producto para reels. Crear una pieza visual pequeña, perfecta y cinematográfica: bombón negro espejo tipo obsidiana, pensado principalmente para redes.",
+    "contentPending": true,
+    "coverImage": "",
+    "baseIds": [],
+    "published": {
+      "instagram": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      },
+      "web": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      },
+      "youtube": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      }
+    },
+    "recipe": {
+      "ingredients": [],
+      "steps": [],
+      "result": "Bombón redondo tipo bonobón, completamente negro, brillante y pulido, con estética de obsidiana/luxury. Variante principal: negro espejo. Posibles variantes: negro con micropuntos brillantes, negro mármol con vetas blancas, negro con espiral o reflejo blanco."
+    },
+    "tasks": [
+      {
+        "text": "Definir relleno final del bombón",
+        "done": false,
+        "type": "prueba"
+      },
+      {
+        "text": "Probar cobertura negra brillante con manteca de cacao",
+        "done": false,
+        "type": "prueba"
+      },
+      {
+        "text": "Probar variante negro con brillantina comestible",
+        "done": false,
+        "type": "prueba"
+      },
+      {
+        "text": "Probar variante mármol negro con vetas blancas",
+        "done": false,
+        "type": "prueba"
+      },
+      {
+        "text": "Grabar planos iniciales del reel",
+        "done": false,
+        "type": "contenido"
+      }
+    ],
+    "notes": [
+      "Concepto visual: lujo, oscuridad, reflejos, poder, silencio, obsidiana, estética imperial.",
+      "Inspiración indirecta: casco negro brillante tipo ciencia ficción / respiración grave / presencia oscura. Evitar referencia explícita de marca o personajes.",
+      "Plano 1: oscuridad total durante 1 segundo. Se escucha una respiración grave: hhhhhhhhh…",
+      "Plano 2: aparece una luz lateral durante 2 segundos. Se revela solo el reflejo del bombón, no el bombón entero. Mostrar apenas el brillo.",
+      "Regla visual: todo lo que no aporte lujo, misterio o tensión se elimina.",
+      "Duración ideal del reel: 15 a 25 segundos.",
+      "La pieza debe pensarse primero para redes y después como producto gastronómico."
+    ],
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "tiktok": "",
+      "source": ""
+    },
+    "createdAt": "2026-05-26T00:07:16.559Z",
+    "updatedAt": "2026-05-26T00:07:16.559Z"
   }
 ]
