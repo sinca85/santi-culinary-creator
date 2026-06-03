@@ -514,7 +514,7 @@
     "tasks": [
       {
         "text": "Definir relleno final del bombón",
-        "done": false,
+        "done": true,
         "type": "prueba"
       },
       {
@@ -554,6 +554,6 @@
       "source": ""
     },
     "createdAt": "2026-05-26T00:07:16.559Z",
-    "updatedAt": "2026-05-26T00:07:16.559Z"
+    "updatedAt": "2026-05-28T13:07:11.573Z"
   }
 ]
