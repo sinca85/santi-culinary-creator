@@ -1,328 +1,559 @@
 [
   {
-    "_id": "6a0e1b0a95d24135ad366453",
-    "id": "bombones-naranja-confitada",
-    "title": "Bombones de naranja confitada",
-    "status": "idea",
-    "category": "bombones",
-    "priority": "alta",
-    "goal": "Crear bombón con naranja confitada y chocolate, apto para fotos y posible reel.",
-    "contentPending": true,
-    "dateTarget": "",
-    "coverImage": "",
+    "_id": "6a0f000e85a1871b3df4449c",
+    "id": "base-brownie-clasico",
+    "type": "base",
+    "title": "Base brownie clásico",
+    "status": "aprobado",
+    "category": "bases",
+    "priority": "media",
+    "goal": "Base reutilizable para tortas, postres y armado de capas.",
+    "contentPending": false,
+    "baseIds": [],
+    "recipe": {
+      "ingredients": [
+        "Huevos, 3 unidades",
+        "Azúcar, 170 g",
+        "Manteca o mantequilla, 100 g",
+        "Chocolate, 150 g",
+        "Harina 0000, 85 g",
+        "Cacao amargo, 15 g",
+        "Sal, 1 pizca",
+        "Café instantáneo, 1 cucharadita"
+      ],
+      "steps": [
+        "Fundir el chocolate junto con la manteca.",
+        "Batir huevos con azúcar hasta integrar.",
+        "Agregar mezcla de chocolate y manteca.",
+        "Incorporar harina, cacao amargo, sal y café instantáneo.",
+        "Mezclar hasta obtener preparación homogénea.",
+        "Volcar en molde enmantecado o con papel.",
+        "Cocinar 20–25 minutos a fuego medio / horno medio."
+      ],
+      "result": "Brownie húmedo"
+    },
+    "notes": [
+      "Para versión más húmeda reducir tiempo.",
+      "Puede usarse como base para tortas con crema o ganache."
+    ],
+    "tasks": [],
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "photos": "",
+      "tiktok": ""
+    },
+    "coverImage": "https://content.cuerpomente.com/medio/2023/05/04/brownie-recetas-saludables_6e41a648_230504111738_1280x720.jpg",
+    "createdAt": "2026-05-21T12:52:30.527Z",
+    "updatedAt": "2026-05-21T12:52:30.527Z"
+  },
+  {
+    "_id": "6a0f03b6b31f3579a003d66a",
+    "id": "base-brownie-alfajor",
+    "type": "base",
+    "title": "Base brownie para alfajores",
+    "status": "aprobado",
+    "category": "bases",
+    "priority": "media",
+    "goal": "Base húmeda de brownie para cortar discos y armar alfajores.",
+    "contentPending": false,
+    "published": {},
+    "baseIds": [],
+    "yield": {
+      "quantity": 12,
+      "unit": "alfajores"
+    },
+    "recipe": {
+      "ingredients": [
+        "Manteca, 180 g",
+        "Chocolate, 180 g",
+        "Huevos, 4 unidades",
+        "Azúcar, 400 g",
+        "Harina, 150 g",
+        "Cacao amargo, 15 g",
+        "Sal, 1 pizca"
+      ],
+      "steps": [
+        "Derretir chocolate con manteca en microondas o baño María.",
+        "Batir huevos con azúcar durante aproximadamente 2 minutos.",
+        "Agregar mezcla de chocolate y manteca a los huevos.",
+        "Tamizar harina, cacao amargo y sal.",
+        "Incorporar secos con movimientos envolventes hasta integrar.",
+        "Volcar preparación en placa con papel manteca o aluminio.",
+        "Hornear a 180 °C.",
+        "Controlar cocción pinchando aproximadamente a 4 cm del borde.",
+        "El cuchillo debe salir con grumitos húmedos; nunca con mezcla líquida.",
+        "Retirar y enfriar completamente en heladera antes de cortar discos para alfajores."
+      ],
+      "result": "Brownie húmedo apto para alfajores"
+    },
+    "notes": [
+      "Ingredientes calculados para aproximadamente 12 alfajores.",
+      "El punto correcto es cuchillo con grumitos húmedos; nunca mezcla líquida.",
+      "Los recortes sirven para trufas o para comer mientras se arma la receta.",
+      "Puede reutilizarse como base para tortas, postres o capas.",
+      "Compatible con ganache, dulce de leche, chantilly o cremas."
+    ],
+    "tasks": [],
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "photos": "",
+      "tiktok": ""
+    },
+    "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWErvKLHS-niCpxEjWo1DrrIEftfiBXCyuww&s",
+    "createdAt": "2026-05-21T13:08:06.770Z",
+    "updatedAt": "2026-05-21T13:08:06.770Z"
+  },
+  {
+    "_id": "6a0f0478b31f3579a003d66b",
+    "id": "base-pasta-bonobon",
+    "type": "base",
+    "title": "Base pasta Bon o Bon",
+    "status": "aprobado",
+    "category": "bases",
+    "priority": "media",
+    "goal": "Relleno tipo Bon o Bon con maní y chocolate blanco.",
+    "contentPending": false,
+    "published": {},
+    "baseIds": [],
+    "yield": {
+      "quantity": 360,
+      "unit": "g aprox"
+    },
+    "recipe": {
+      "ingredients": [
+        "Pasta de maní, 60 g",
+        "Crema de leche, 80 g",
+        "Glucosa, 20 g",
+        "Chocolate blanco, 200 g"
+      ],
+      "steps": [
+        "Calentar crema junto con la glucosa sin hervir fuerte.",
+        "Agregar chocolate blanco picado.",
+        "Esperar 1 minuto.",
+        "Emulsionar hasta integrar.",
+        "Agregar pasta de maní.",
+        "Mezclar hasta obtener crema homogénea.",
+        "Dejar cristalizar antes de usar como relleno."
+      ],
+      "result": "Pasta cremosa sabor Bon o Bon"
+    },
+    "notes": [
+      "Base apta para bombones, alfajores y tortas.",
+      "Más tiempo de reposo = textura más firme.",
+      "Puede aumentarse pasta de maní para sabor más intenso.",
+      "Compatible con brownie, dulce de leche y chocolate semiamargo."
+    ],
+    "tasks": [],
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "photos": "",
+      "tiktok": ""
+    },
+    "coverImage": "https://i.ytimg.com/vi/cFgXr0PNMPc/maxresdefault.jpg",
+    "createdAt": "2026-05-21T13:11:20.132Z",
+    "updatedAt": "2026-05-21T13:11:20.132Z"
+  },
+  {
+    "_id": "6a0f04ccb31f3579a003d66c",
+    "id": "base-relleno-ferrero-rocher",
+    "type": "base",
+    "title": "Base relleno Ferrero Rocher",
+    "status": "aprobado",
+    "category": "bases",
+    "priority": "media",
+    "goal": "Relleno tipo Ferrero Rocher con Nutella, avellanas y chocolate semiamargo.",
+    "contentPending": false,
+    "published": {},
+    "baseIds": [],
+    "yield": {
+      "quantity": 420,
+      "unit": "g aprox"
+    },
+    "recipe": {
+      "ingredients": [
+        "Nutella, 100 g",
+        "Avellanas, 20 g",
+        "Crema de leche, 100 g",
+        "Chocolate semiamargo, 200 g"
+      ],
+      "steps": [
+        "Picar o romper las avellanas en trozos pequeños.",
+        "Calentar la crema sin hervir fuerte.",
+        "Volcar la crema caliente sobre el chocolate semiamargo picado.",
+        "Reposar 1 minuto.",
+        "Emulsionar hasta obtener una ganache lisa.",
+        "Agregar la Nutella.",
+        "Incorporar las avellanas picadas.",
+        "Mezclar hasta integrar.",
+        "Dejar cristalizar antes de usar como relleno."
+      ],
+      "result": "Relleno cremoso tipo Ferrero Rocher"
+    },
+    "notes": [
+      "Base apta para bombones, alfajores, tortas y postres en vaso.",
+      "Más avellanas aportan textura más crocante.",
+      "Puede combinarse con brownie, chocolate semiamargo o dulce de leche.",
+      "Dejar reposar para que tome cuerpo antes de rellenar."
+    ],
+    "tasks": [],
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "photos": "",
+      "tiktok": ""
+    },
+    "coverImage": "https://elavegan.com/wp-content/uploads/2020/06/7-homemade-Ferrero-Rocher-truffles-on-a-small-plate-with-one-showing-the-inside.jpg",
+    "createdAt": "2026-05-21T13:12:44.257Z",
+    "updatedAt": "2026-05-21T13:12:44.257Z"
+  },
+  {
+    "_id": "6a0f0527b31f3579a003d66d",
+    "id": "base-relleno-naranja",
+    "type": "base",
+    "title": "Base relleno naranja",
+    "status": "aprobado",
+    "category": "bases",
+    "priority": "media",
+    "goal": "Relleno cítrico de naranja para bombones y alfajores.",
+    "contentPending": false,
+    "published": {},
+    "baseIds": [],
+    "yield": {
+      "quantity": 12,
+      "unit": "bombones aprox"
+    },
+    "recipe": {
+      "ingredients": [
+        "Jugo de naranja, 40 g",
+        "Ralladura fina de naranja (solo parte naranja), 6–8 g",
+        "Azúcar, 35 g",
+        "Glucosa, 10 g",
+        "Chocolate blanco, 80 g",
+        "Manteca (opcional), 8 g",
+        "Sal, 1 pizca mínima"
+      ],
+      "steps": [
+        "Colocar jugo de naranja, azúcar, glucosa y ralladura en olla pequeña.",
+        "Cocinar unos minutos hasta disolver azúcar y concentrar sabor.",
+        "Retirar del fuego.",
+        "Agregar chocolate blanco picado.",
+        "Esperar aproximadamente 1 minuto.",
+        "Emulsionar hasta obtener mezcla homogénea.",
+        "Agregar manteca si se busca textura más sedosa.",
+        "Incorporar pizca mínima de sal.",
+        "Dejar enfriar y cristalizar antes de rellenar bombones."
+      ],
+      "result": "Relleno cítrico cremoso sabor naranja"
+    },
+    "notes": [
+      "Ingredientes calculados para aproximadamente 12 bombones.",
+      "Usar solo la parte naranja de la cáscara para evitar amargor.",
+      "Más reducción del jugo = sabor más intenso.",
+      "Compatible con chocolate semiamargo y chocolate blanco.",
+      "Puede utilizarse también en alfajores o tortas."
+    ],
+    "tasks": [],
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "photos": "",
+      "tiktok": ""
+    },
+    "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUc0d5FBiySpYxkcM61T4e-hYLhrK2YgXbcw&s",
+    "createdAt": "2026-05-21T13:14:15.536Z",
+    "updatedAt": "2026-05-21T13:14:15.536Z"
+  },
+  {
+    "_id": "6a0f05bdb31f3579a003d66e",
+    "id": "base-flan-creme-brulee",
+    "type": "base",
+    "title": "Base flan / crème brûlée",
+    "status": "aprobado",
+    "category": "bases",
+    "priority": "media",
+    "goal": "Base cremosa cocida de vainilla apta para flan, crème brûlée y postres.",
+    "contentPending": false,
+    "published": {},
+    "baseIds": [],
+    "yield": {
+      "quantity": 900,
+      "unit": "g aprox"
+    },
+    "recipe": {
+      "ingredients": [
+        "Nata 35%, 250 g",
+        "Leche, 250 g",
+        "Yemas de huevo, 120 g",
+        "Azúcar, 100 g",
+        "Vainilla, 1/2 rama"
+      ],
+      "steps": [
+        "Abrir la vaina de vainilla y extraer semillas.",
+        "Calentar leche, nata y vainilla sin hervir.",
+        "Batir suavemente yemas con azúcar.",
+        "Agregar mezcla caliente poco a poco sobre las yemas para templarlas.",
+        "Integrar completamente evitando incorporar aire.",
+        "Colar preparación si es necesario.",
+        "Volcar en moldes.",
+        "Cocinar a baño María hasta coagular.",
+        "Para crème brûlée: enfriar y caramelizar azúcar en superficie antes de servir."
+      ],
+      "result": "Crema cocida suave tipo flan / crème brûlée"
+    },
+    "notes": [
+      "La misma base sirve para flan y crème brûlée.",
+      "Evitar hervor fuerte para que no se corte.",
+      "Puede infusionarse con café, naranja o especias.",
+      "Más cocción = textura firme; menos cocción = textura cremosa.",
+      "Ideal para vasos, tartas y rellenos."
+    ],
+    "tasks": [],
+    "links": {
+      "youtube": "",
+      "instagram": "",
+      "photos": "",
+      "tiktok": ""
+    },
+    "coverImage": "https://imag.bonviveur.com/creme-brulee-hecha-en-casa.jpg",
+    "createdAt": "2026-05-21T13:16:45.335Z",
+    "updatedAt": "2026-05-21T13:16:45.335Z"
+  },
+  {
+    "_id": "6a0f38c2839c523c6ec70f6e",
+    "id": "base-masa-sablee",
+    "type": "base",
+    "title": "Base masa sablée",
+    "status": "aprobado",
+    "category": "bases",
+    "priority": "media",
+    "goal": "Base crocante para tartas, alfajores, cheesecakes y postres.",
+    "contentPending": false,
+    "coverImage": "https://i.ytimg.com/vi/-KEx4N2WcnI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDWlWEFiPMJFB3wrq_rC5gBk3j5BQ",
+    "baseIds": [],
+    "published": {
+      "instagram": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      },
+      "web": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      },
+      "youtube": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      }
+    },
+    "recipe": {
+      "ingredients": [
+        "Manteca, 100 g",
+        "Azúcar, 100 g",
+        "Esencia de vainilla, 1 cucharadita",
+        "Huevo, 1 unidad o yemas, 2 unidades",
+        "Harina 0000, 250 g"
+      ],
+      "steps": [
+        "Batir o integrar manteca con azúcar.",
+        "Agregar esencia de vainilla.",
+        "Incorporar huevo entero o dos yemas.",
+        "Agregar harina 0000 y unir hasta formar masa sin amasar demasiado.",
+        "Envolver y llevar a heladera durante al menos 2 horas.",
+        "Estirar masa fría y colocar en molde.",
+        "Pinchar toda la superficie con tenedor para evitar que se infle durante cocción.",
+        "Colocar peso encima (porotos, lentejas, piedras para hornear o similar) para mantener forma.",
+        "Hornear aproximadamente 20 minutos.",
+        "Retirar cuando tome color ligeramente dorado."
+      ],
+      "result": "Masa sablée firme, crocante y apta para tartas o alfajores"
+    },
+    "tasks": [],
+    "notes": [
+      "Reposo en frío mejora textura y evita deformaciones.",
+      "Pinchar siempre la masa antes del horno.",
+      "Usar peso encima ayuda a mantener bordes y evita inflado.",
+      "Puede utilizarse para bases de cheesecake, lemon pie, tartas y alfajores.",
+      "Tiempo de cocción aproximado: 20 minutos."
+    ],
     "links": {
       "youtube": "",
       "instagram": "",
       "tiktok": "",
-      "photos": ""
+      "source": ""
+    },
+    "createdAt": "2026-05-21T16:54:26.203Z",
+    "updatedAt": "2026-05-21T16:54:26.203Z"
+  },
+  {
+    "_id": "6a14dcf512acf0e52c22035b",
+    "id": "published-bombones-naranja-confitada",
+    "type": "published",
+    "title": "Bombones de naranja confitada",
+    "status": "publicado",
+    "category": "bombones",
+    "priority": "alta",
+    "goal": "Bombones con relleno cítrico de naranja y cobertura de chocolate, producidos para YouTube y contenido futuro.",
+    "contentPending": false,
+    "coverImage": "https://img.youtube.com/vi/sgRoCUrSPjw/maxresdefault.jpg",
+    "baseIds": [
+      "base-relleno-naranja"
+    ],
+    "published": {
+      "instagram": {
+        "enabled": true,
+        "url": "https://www.instagram.com/reel/DYxmbsICr9v/",
+        "views": 0
+      },
+      "web": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      },
+      "youtube": {
+        "enabled": true,
+        "url": "https://www.youtube.com/watch?v=sgRoCUrSPjw",
+        "views": 0
+      },
+      "youtubeShort": {
+        "enabled": true,
+        "url": "https://www.youtube.com/shorts/vnsf1V1d3TA",
+        "views": 0
+      },
+      "tiktok": {
+        "enabled": true,
+        "url": "https://www.tiktok.com/@santivillaabrille/video/7643926536122273032",
+        "views": 0
+      }
+    },
+    "recipe": {
+      "ingredients": [
+        "Chocolate cobertura, cantidad necesaria",
+        "Base relleno naranja",
+        "Naranja confitada"
+      ],
+      "steps": [
+        "Preparar relleno cítrico de naranja.",
+        "Templar chocolate.",
+        "Moldear capa inicial de chocolate.",
+        "Agregar relleno.",
+        "Cerrar bombones.",
+        "Dejar cristalizar.",
+        "Decorar con naranja confitada.",
+        "Grabar y fotografiar resultado."
+      ],
+      "result": "Bombones rellenos con sabor marcado a naranja y cobertura de chocolate"
     },
     "tasks": [
       {
-        "text": "Comprar glucosa",
-        "done": true,
-        "type": "compra"
-      },
-      {
-        "text": "Comprar chocolate blanco",
-        "done": true,
-        "type": "compra"
-      },
-      {
-        "text": "Probar naranja con doble hervor",
-        "done": true,
-        "type": "produccion"
-      },
-      {
-        "text": "Definir relleno",
-        "done": true,
-        "type": "produccion"
-      },
-      {
-        "text": "Sacar fotos",
+        "text": "Subir reel Instagram",
         "done": true,
         "type": "contenido"
       },
       {
-        "text": "Grabar reel",
-        "done": true,
-        "type": "contenido"
+        "text": "Crear ficha web",
+        "done": false,
+        "type": "produccion"
       }
     ],
     "notes": [
-      "Revisar amargor de la piel.",
-      "Evaluar cobertura con chocolate semiamargo."
+      "Video largo publicado en YouTube.",
+      "Relacionado con base-relleno-naranja.",
+      "Puede reutilizarse para alfajores o bombones blancos.",
+      "Primer contenido publicado dentro del proyecto Culinary Creator.",
+      "Publicado además en Shorts, TikTok e Instagram Reel."
     ],
+    "links": {
+      "youtube": "https://www.youtube.com/watch?v=sgRoCUrSPjw",
+      "youtubeShort": "https://www.youtube.com/shorts/vnsf1V1d3TA",
+      "instagram": "https://www.instagram.com/reel/DYxmbsICr9v/",
+      "tiktok": "https://www.tiktok.com/@santivillaabrille/video/7643926536122273032",
+      "source": ""
+    },
+    "createdAt": "2026-05-25T23:36:21.121Z",
+    "updatedAt": "2026-05-25T23:36:51.327Z"
+  },
+  {
+    "_id": "6a14e434542ad45dc08eca2b",
+    "id": "project-imperial-darkness",
+    "type": "project",
+    "title": "Imperial Darkness",
+    "status": "idea",
+    "category": "bombones",
+    "priority": "alta",
+    "goal": "Producto para reels. Crear una pieza visual pequeña, perfecta y cinematográfica: bombón negro espejo tipo obsidiana, pensado principalmente para redes.",
+    "contentPending": true,
+    "coverImage": "",
+    "baseIds": [],
+    "published": {
+      "instagram": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      },
+      "web": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      },
+      "youtube": {
+        "enabled": false,
+        "url": "",
+        "views": 0
+      }
+    },
     "recipe": {
       "ingredients": [],
       "steps": [],
-      "result": "Sin probar"
+      "result": "Bombón redondo tipo bonobón, completamente negro, brillante y pulido, con estética de obsidiana/luxury. Variante principal: negro espejo. Posibles variantes: negro con micropuntos brillantes, negro mármol con vetas blancas, negro con espiral o reflejo blanco."
     },
-    "updatedAt": "2026-05-20T22:15:56.359Z"
-  },
-  {
-    "_id": "6a0e1b3395d24135ad366456",
-    "id": "cheesecake-frutos-rojos",
-    "title": "Cheesecake clásica con frutos rojos",
-    "status": "idea",
-    "category": "tartas",
-    "priority": "media",
-    "goal": "Crear cheesecake estable para fotos, receta repetible y posible reel.",
-    "contentPending": true,
-    "dateTarget": "",
-    "coverImage": "",
+    "tasks": [
+      {
+        "text": "Definir relleno final del bombón",
+        "done": true,
+        "type": "prueba"
+      },
+      {
+        "text": "Probar cobertura negra brillante con manteca de cacao",
+        "done": false,
+        "type": "prueba"
+      },
+      {
+        "text": "Probar variante negro con brillantina comestible",
+        "done": false,
+        "type": "prueba"
+      },
+      {
+        "text": "Probar variante mármol negro con vetas blancas",
+        "done": false,
+        "type": "prueba"
+      },
+      {
+        "text": "Grabar planos iniciales del reel",
+        "done": false,
+        "type": "contenido"
+      }
+    ],
+    "notes": [
+      "Concepto visual: lujo, oscuridad, reflejos, poder, silencio, obsidiana, estética imperial.",
+      "Inspiración indirecta: casco negro brillante tipo ciencia ficción / respiración grave / presencia oscura. Evitar referencia explícita de marca o personajes.",
+      "Plano 1: oscuridad total durante 1 segundo. Se escucha una respiración grave: hhhhhhhhh…",
+      "Plano 2: aparece una luz lateral durante 2 segundos. Se revela solo el reflejo del bombón, no el bombón entero. Mostrar apenas el brillo.",
+      "Regla visual: todo lo que no aporte lujo, misterio o tensión se elimina.",
+      "Duración ideal del reel: 15 a 25 segundos.",
+      "La pieza debe pensarse primero para redes y después como producto gastronómico."
+    ],
     "links": {
       "youtube": "",
       "instagram": "",
       "tiktok": "",
-      "photos": ""
+      "source": ""
     },
-    "tasks": [
-      {
-        "text": "Comprar queso crema",
-        "done": false,
-        "type": "compra"
-      },
-      {
-        "text": "Comprar crema de leche",
-        "done": true,
-        "type": "compra"
-      },
-      {
-        "text": "Comprar galletitas para base",
-        "done": true,
-        "type": "compra"
-      },
-      {
-        "text": "Comprar manteca",
-        "done": true,
-        "type": "compra"
-      },
-      {
-        "text": "Definir cobertura",
-        "done": true,
-        "type": "produccion"
-      },
-      {
-        "text": "Hacer primera prueba",
-        "done": true,
-        "type": "produccion"
-      },
-      {
-        "text": "Sacar fotos",
-        "done": false,
-        "type": "contenido"
-      },
-      {
-        "text": "Grabar reel",
-        "done": false,
-        "type": "contenido"
-      }
-    ],
-    "notes": [
-      "Probar versión económica11111.",
-      "Evaluar gelatina para mayor estabilidad.",
-      "Revisar cobertura brillante vs fruta fresca."
-    ],
-    "recipe": {
-      "ingredients": [
-        "Queso crema",
-        "Crema de leche",
-        "Galletitas para base",
-        "Manteca",
-        "Frutos rojos"
-      ],
-      "steps": [],
-      "result": "Sin probar"
-    },
-    "updatedAt": "2026-05-20T22:14:10.278Z"
-  },
-  {
-    "_id": "6a0e2f7f21cf10dc1188d321",
-    "id": "alfajores-maracuya-chocolate",
-    "title": "Alfajores de maracuyá y chocolate blanco",
-    "status": "investigacion",
-    "category": "chocolateria",
-    "priority": "alta",
-    "goal": "Desarrollar alfajor premium para fotos, reel y posible producto fijo.",
-    "contentPending": true,
-    "dateTarget": "2026-05-30",
-    "coverImage": "",
-    "links": {
-      "youtube": "",
-      "instagram": "",
-      "tiktok": "",
-      "photos": ""
-    },
-    "tasks": [
-      {
-        "text": "Comprar maracuyá",
-        "done": false,
-        "type": "compra"
-      },
-      {
-        "text": "Comprar chocolate blanco",
-        "done": false,
-        "type": "compra"
-      },
-      {
-        "text": "Probar relleno ácido",
-        "done": false,
-        "type": "produccion"
-      },
-      {
-        "text": "Diseñar cobertura",
-        "done": false,
-        "type": "produccion"
-      },
-      {
-        "text": "Sacar fotos finales",
-        "done": false,
-        "type": "contenido"
-      },
-      {
-        "text": "Grabar reel armado",
-        "done": false,
-        "type": "contenido"
-      }
-    ],
-    "notes": [
-      "Buscar equilibrio ácido/dulce.",
-      "Evaluar cobertura blanca vs semiamarga.",
-      "Pensar packaging."
-    ],
-    "recipe": {
-      "ingredients": [
-        "Tapas alfajor",
-        "Chocolate blanco",
-        "Pulpa maracuyá",
-        "Crema",
-        "Glucosa"
-      ],
-      "steps": [
-        "Preparar relleno",
-        "Dejar madurar",
-        "Armar",
-        "Bañar"
-      ],
-      "result": "Pendiente"
-    },
-    "createdAt": "2026-05-20T22:02:39.913Z",
-    "updatedAt": "2026-05-20T22:02:39.913Z"
-  },
-  {
-    "_id": "6a0e33d8a931c403a490d273",
-    "id": "ganache-pera-chocolate-blanco",
-    "title": "Ganache de pera y chocolate blanco",
-    "status": "en-prueba",
-    "category": "bombones",
-    "priority": "alta",
-    "goal": "Crear relleno estable para bombones con sabor marcado a pera.",
-    "contentPending": true,
-    "tasks": [
-      {
-        "text": "Comprar peras",
-        "done": true,
-        "type": "compra"
-      },
-      {
-        "text": "Reducir puré",
-        "done": false,
-        "type": "produccion"
-      },
-      {
-        "text": "Probar textura después de 24 hs",
-        "done": false,
-        "type": "produccion"
-      }
-    ],
-    "notes": [
-      "La pera pierde sabor si se cocina demasiado.",
-      "Evaluar agregar ácido cítrico."
-    ],
-    "recipe": {
-      "ingredients": [
-        "100 g puré de pera",
-        "90 g azúcar",
-        "15 g glucosa",
-        "100 g chocolate blanco",
-        "10 g manteca",
-        "1 pizca sal"
-      ],
-      "steps": [
-        "Pelar y procesar las peras hasta obtener 100 g de puré.",
-        "Agregar azúcar y glucosa al puré.",
-        "Cocinar a fuego medio durante 8–10 minutos removiendo constantemente hasta reducir y espesar.",
-        "Retirar del fuego cuando alcance textura similar a una mermelada ligera.",
-        "Esperar hasta 50°C aproximadamente.",
-        "Agregar el chocolate blanco picado y mezclar hasta fundir.",
-        "Incorporar manteca y pizca de sal.",
-        "Emulsionar con espátula o mixer.",
-        "Reposar 12 horas antes de usar en bombones.",
-        "Evaluar firmeza a temperatura ambiente."
-      ],
-      "result": "Textura sedosa, sabor suave. Necesita más intensidad de fruta."
-    },
-    "createdAt": "2026-05-20T22:21:12.682Z",
-    "updatedAt": "2026-05-20T22:21:43.546Z"
-  },
-  {
-    "_id": "6a0e37b1fcefa93ef291aa4a",
-    "id": "flan-naranja-sin-huevo",
-    "title": "Flan de naranja sin huevo",
-    "status": "investigacion",
-    "category": "tartas",
-    "priority": "media",
-    "goal": "Probar flan de naranja con maizena, sin huevo, usando caramelo clásico.",
-    "contentPending": true,
-    "coverImage": "https://img.youtube.com/vi/nd3yfsAHpCw/maxresdefault.jpg",
-    "links": {
-      "youtube": "https://www.youtube.com/watch?v=nd3yfsAHpCw",
-      "instagram": "",
-      "tiktok": "",
-      "photos": ""
-    },
-    "tasks": [
-      {
-        "text": "Ver video completo",
-        "done": false,
-        "type": "investigacion"
-      },
-      {
-        "text": "Probar textura del flan",
-        "done": false,
-        "type": "produccion"
-      },
-      {
-        "text": "Sacar fotos del corte",
-        "done": false,
-        "type": "contenido"
-      }
-    ],
-    "notes": [
-      "Fuente: YouTube.",
-      "Receta con zumo de naranja y maizena, sin huevo."
-    ],
-    "recipe": {
-      "ingredients": [
-        "Azúcar para caramelo, 120 g",
-        "Agua para caramelo, 40 ml",
-        "Zumo de naranja recién exprimido y colado, 1 L",
-        "Maizena, 100 g",
-        "Azúcar para flan, 135 g"
-      ],
-      "steps": [
-        "Preparar el caramelo con azúcar y agua.",
-        "Volcar el caramelo en el molde y distribuirlo bien.",
-        "Mezclar el zumo de naranja colado con la maizena hasta disolver.",
-        "Agregar el azúcar y mezclar.",
-        "Cocinar la mezcla removiendo hasta que espese.",
-        "Verter la preparación sobre el molde acaramelado.",
-        "Dejar enfriar y llevar a heladera hasta que tome cuerpo.",
-        "Desmoldar y evaluar textura."
-      ],
-      "result": "Sin probar"
-    },
-    "createdAt": "2026-05-20T22:37:37.993Z",
-    "updatedAt": "2026-05-20T22:37:37.993Z"
+    "createdAt": "2026-05-26T00:07:16.559Z",
+    "updatedAt": "2026-05-28T13:07:11.573Z"
   }
 ]
